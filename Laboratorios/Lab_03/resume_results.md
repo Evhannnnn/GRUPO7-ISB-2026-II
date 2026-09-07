@@ -13,4 +13,4 @@ Se documentó el proceso mediante videos de adquisición, que muestran la ejecuc
 
 | Video | Señal Ploteada | Espectro |
 |-------|----------|----------|
-| ![Bicep Reposo](Resources/bicep_reposo.jpg)<br>[Ver video](https://drive.google.com/file/d/1Fn9X9EgTd7UXgnSBJ60JQZXrCA5AoUNA/view?t=3.966) |  |  |
+| ![Bicep Reposo](https://github.com/Andrequis/GRUPO7-ISB-2026-II/blob/main/Resources/bicep_reposo.jpg?raw=true)<br>[Ver video](https://drive.google.com/file/d/1Fn9X9EgTd7UXgnSBJ60JQZXrCA5AoUNA/view?t=3.966) |  |  |
