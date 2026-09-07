@@ -9,7 +9,7 @@ Durante el desarrollo del laboratorio se procedió a la adquisición de señales
 
 Se documentó el proceso mediante videos de adquisición, que muestran la ejecución de las maniobras musculares. Asimismo, se presentan las señales registradas y graficadas.
 
-   **1) Músculo en reposo**
+> **1) Músculo en reposo**
 
 | Video | Señal Ploteada | Espectro |
 |-------|----------|----------|
