@@ -13,7 +13,7 @@ Se documentó el proceso mediante videos de adquisición, que muestran la ejecuc
 
 | Video | Señal Ploteada | Espectro |
 |-------|----------|----------|
-| ![Bicep Reposo](https://github.com/Evhannnnn/GRUPO7-ISB-2026-II/blob/main/Resources/bicep_reposo.jpg?raw=true)<br>[Ver video](https://drive.google.com/file/d/1Fn9X9EgTd7UXgnSBJ60JQZXrCA5AoUNA/view?t=3.966) |![Bicep RPloteo](https://github.com/Evhannnnn/GRUPO7-ISB-2026-II/blob/main/Resources/breposo.png?raw=true)|![Bicep RFrecuencia]([https://github.com/Evhannnnn/GRUPO7-ISB-2026-II/blob/main/Resources/breposo.png](https://github.com/Evhannnnn/GRUPO7-ISB-2026-II/blob/main/Resources/breposo_f.png?raw=true)  |
+| ![Bicep Reposo](https://github.com/Evhannnnn/GRUPO7-ISB-2026-II/blob/main/Resources/bicep_reposo.jpg?raw=true)<br>[Ver video](https://drive.google.com/file/d/1Fn9X9EgTd7UXgnSBJ60JQZXrCA5AoUNA/view?t=3.966) |![Bicep RPloteo](https://github.com/Evhannnnn/GRUPO7-ISB-2026-II/blob/main/Resources/breposo.png?raw=true)|![Bicep RFrecuencia](https://github.com/Evhannnnn/GRUPO7-ISB-2026-II/blob/main/Resources/breposo_f.png?raw=true)  |
 
 > **2) Músculo con contracción leve**
 
