@@ -118,42 +118,65 @@ Además del ritmo cardíaco, el movimiento del tórax durante la respiración mo
 
 ### 10. Preguntas
 
-**Q1.** ¿Cuáles son las frecuencias significativas para la adquisición de EMG? ¿Son iguales en todas las áreas del cuerpo, como en la zona facial?
+**P1. ¿Cuáles son los tipos más típicos de fuentes de ruido que afectan al ECG?**
 
-Las frecuencias significativas son de 50 a 150 Hz, ya que en este rango se concentra la mayor parte de la energía utilizable y fisiológicamente relevante de la señal EMG [1]. Las frecuencias significativas no son iguales para todas las áreas del cuerpo. Por ejemplo, en el rostro las frecuencias dominantes pueden encontrarse entre 100 y 250 Hz, mientras que en el brazo se encuentran principalmente entre 50 y 150 Hz [2]. Esto se debe principalmente a diferencias anatómicas y fisiológicas, como el tipo de fibras musculares, las unidades motoras, la geometría y la profundidad del músculo.
+*   **Deriva de la línea base (Baseline Wander):** Ruido de muy baja frecuencia (< 0.5 Hz) introducido por la respiración y los movimientos corporales lentos que alteran la impedancia de la piel.
+*   **Interferencia de la red eléctrica (Powerline Interference):** Ruido sinusoidal centrado en 50 Hz o 60 Hz (según la región) acoplado magnética o eléctricamente a los cables del ECG.
+*   **Artefacto electromiográfico (EMG / Muscle Artifact):** Ruido no estacionario de alta frecuencia (20 Hz - 1000 Hz) generado por la actividad eléctrica de los músculos esqueléticos subyacentes.
+*   **Ruido de contacto y movimiento del electrodo:** Variaciones bruscas en la interfaz piel-electrodo que generan desplazamientos de alto voltaje en la línea base.
+*   **Fuente:** https://pdfcoffee.com/medical-instrumentation-application-and-design-4-pdf-free.html
 
-1. [https://www.researchgate.net/figure/Frequency-spectrum-of-EMG-signal_fig2_232905752](https://www.researchgate.net/figure/Frequency-spectrum-of-EMG-signal_fig2_232905752)
-2. [https://pmc.ncbi.nlm.nih.gov/articles/PMC11816783/](https://pmc.ncbi.nlm.nih.gov/articles/PMC11816783/)
+---
 
-**Q2.** ¿Qué tipo de filtro es esencial al trabajar con señales de EMG? ¿Por qué es necesario aplicar este filtro?
+**P2. ¿Por qué el cambio de posición de los sensores (derivaciones I-III) cambia los componentes de la señal de ECG? ¿Cómo cambian estos componentes?**
 
-Se utiliza un filtro pasa banda, que puede obtenerse mediante la combinación de un filtro pasa altos con frecuencia de corte cercana a 20 Hz y un filtro pasa bajos con frecuencia de corte cercana a 500 Hz [3]. Esto se realiza con la finalidad de conservar principalmente las frecuencias de interés dentro de la señal EMG. Este filtro es necesario para disminuir los artefactos de movimiento generados principalmente en frecuencias menores a 20 Hz y reducir el ruido de alta frecuencia presente por encima de aproximadamente 500 Hz.
+*   **Cambio de posición de los sensores:** La actividad cardíaca se comporta como un dipolo eléctrico que genera un vector tridimensional. Las derivaciones bipolares registran la diferencia de potencial sobre ejes geométricos distintos:
+    *   **Derivación I (0°):** Mide la diferencia de potencial entre el brazo izquierdo y el brazo derecho ($\phi LA - \phi RA$).
+    *   **Derivación II (+60°):** Mide la diferencia de potencial entre la pierna izquierda y el brazo derecho ($\phi LL - \phi RA$).
+    *   **Derivación III (+120°):** Mide la diferencia de potencial entre la pierna izquierda y el brazo izquierdo ($\phi LL - \phi LA$).
+*   **Variación de los componentes de la señal:** Modifican la polaridad y deflexión de las ondas P, complejos QRS y ondas T. Con una orientación cardíaca normal (~+60°), la derivación II capta la mayor proyección vectorial, registrando deflexiones de máxima magnitud.
+*   **Fuentes:** 
+    *   https://www.researchgate.net/publication/258884491 Bioelectromagnetism Principles and Applications of Bioelectric and Biomagnetic Fields
+    *   https://pubmed.ncbi.nlm.nih.gov/15432282/
 
-3. [https://www.researchgate.net/figure/Frequency-spectrum-of-EMG-signal_fig2_232905752](https://www.researchgate.net/figure/Frequency-spectrum-of-EMG-signal_fig2_232905752)
+---
 
-**Q3.** ¿Cómo difiere la amplitud en cada tipo de contracción muscular? ¿Existe alguna diferencia según la ubicación en el cuerpo?
+**P3. Describe si existen diferencias mayores en la señal al adquirirla desde diferentes localizaciones del cuerpo (por ejemplo, muñeca / clavícula / pecho). ¿Cuál podría ser la causa? ¿Esperabas tales cambios en la señal? Almacena un segmento de señal de cada una para visualizar las diferencias.**
 
-Según lo observado, cuando se contrae el músculo la amplitud de la señal EMG aumenta considerablemente en comparación con el momento en que el músculo se encuentra en reposo. Esto se debe a que durante la contracción existe una mayor activación y reclutamiento de unidades motoras, lo que se traduce en una mayor actividad eléctrica registrada por el EMG.
+*   **Diferencias observadas en las capturas:**
+    *   **Posición torácica (Pecho):** Presenta una amplitud elevada y una alta relación señal-ruido debido a su proximidad con la masa miocárdica ventricular.
+    *   **Posición en la clavícula:** Muestra una magnitud intermedia de la señal y reduce los artefactos generados por el movimiento corporal.
+    *   **Posición en la muñeca:** Registra picos de menor magnitud en el complejo QRS por la atenuación del medio conductor, además de una mayor interferencia provocada por la impedancia de la piel y la actividad electromiográfica.
+*   **Origen fisiológico de las variaciones:** Se debe al comportamiento anisotrópico de los tejidos biológicos y sus diferentes niveles de conductividad eléctrica a través del volumen conductor.
+*   **Fuente:** https://pmc.ncbi.nlm.nih.gov/articles/PMC11381036/
 
-Según la ubicación del cuerpo, la amplitud de la señal EMG también puede ser distinta. Tal como se pudo observar en el brazo y en la pierna, en el brazo la actividad electromiográfica registrada fue mayor que en la pierna. Esta diferencia puede deberse a factores como la fuerza de contracción realizada, el número de unidades motoras reclutadas, la anatomía del músculo sensado y la posición de los electrodos.
+---
 
-**Q4.** Muestra una captura de pantalla de una sección relevante de los datos de Electromiografía (EMG) dentro del experimento propuesto en la Sección D para un músculo facial de interés. ¿Esta señal corresponde a lo que esperabas? ¿Por qué? ¿Qué emoción y acción realizaste para activar el músculo? ¿Qué músculo activaste?
+**P4. Es bien sabido que los sistemas cardíaco y respiratorio están altamente interconectados. ¿Esperas que diferentes tipos de respiración (por ejemplo, más rápida, más profunda) influyan en las señales de ECG? Muestra capturas de pantalla de señales de ECG en diferentes circunstancias respiratorias y describe las variaciones, si las hay.**
 
-> Insertar aquí la captura de pantalla correspondiente al registro EMG del músculo facial.
+*   **Arritmia Sinusal Respiratoria (ASR / RSA):** Modulación autonómica mediante el nervio vago. Durante la inspiración, la frecuencia cardíaca aumenta (intervalo R-R más corto); durante la espiración, disminuye (intervalo R-R más largo).
+*   **Modulación de la amplitud por movimiento mecánico:** La expansión pulmonar cambia la orientación física e inclinación del corazón respecto a los electrodos, alterando periódicamente la amplitud del complejo QRS y provocando una deriva periódica de la línea base.
+*   **Fuente:** https://pubmed.ncbi.nlm.nih.gov/8434081/
 
-La señal obtenida corresponde a lo esperado si durante la activación del músculo facial se observa un incremento de la amplitud de la señal EMG respecto al período de reposo. Esto se debe al aumento de la actividad eléctrica producido por el reclutamiento de unidades motoras durante la contracción muscular.
+---
 
-Emoción realizada: [Completar según el experimento].
+**P5. En la Guía para el Hogar #1 (Home-Guide #1) observaste que diferentes cantidades de fuerza producida en el músculo generaban señales con diferentes amplitudes. ¿Cómo influye el movimiento en tu señal de ECG?**
 
-Acción realizada: [Completar según el experimento].
+*   **Artefacto electromiográfico por movimiento:** Las contracciones voluntarias u involuntarias producen potenciales de acción cuya banda espectral (20 Hz - 500 Hz) se superpone de manera directa con las frecuencias características del trazado electrocardiográfico (0.05 Hz - 150 Hz), dificultando la correcta identificación del complejo QRS.
+*   **Alteración de la interfaz piel-electrodo:** Desplazamientos mecánicos modifican la capa electrolítica del sensor y perturban la doble capa de carga, desencadenando variaciones bruscas en el potencial de media celda que sobrepasan la capacidad dinámica de los amplificadores de biopotenciales.
+*   **Fuente:** https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1137-66272009000600003
 
-Músculo activado: [Completar según el experimento].
+---
 
-**Q5.** Hasta donde alcanza tu conocimiento, ¿es la amplitud de EMG igual a la cantidad de fuerza que has generado con tu músculo?
+**P6. Según tus conocimientos, ¿cómo puedes detectar la bradicardia y la taquicardia en la señal de ECG?**
 
-No exactamente. La amplitud de la señal EMG está relacionada con el nivel de activación muscular y generalmente aumenta cuando se incrementa la fuerza ejercida, debido al mayor reclutamiento y frecuencia de activación de las unidades motoras. Sin embargo, la amplitud de EMG no representa directamente la cantidad de fuerza generada por el músculo.
+*   **Cálculo de la frecuencia cardíaca:** Se estiman los latidos por minuto (LPM) evaluando el tiempo transcurrido entre complejas deflexiones consecutivas (intervalo R-R expresado en segundos) mediante la fórmula:
 
-La relación entre la amplitud de EMG y la fuerza puede verse afectada por factores como el tipo de músculo, la posición de los electrodos, la fatiga muscular, el tejido existente entre el músculo y los electrodos y el tipo de contracción realizada. Por ello, la señal EMG puede utilizarse como una estimación de la actividad muscular, pero no debe interpretarse directamente como una medida de fuerza.
+    $$FC \text{ (BPM)} = \frac{60}{\text{Intervalo R-R (s)}}$$
+
+*   **Bradicardia:** Identificada clínicamente cuando el ritmo cae por debajo de 60 LPM, representando una extensión del tiempo interlatido superior a 1.0 s.
+*   **Taquicardia:** Determinada cuando la aceleración del ritmo supera los 100 LPM, lo cual equivale a un acortamiento del lapso R-R por debajo de 0.6 s.
+*   **Fuente:** https://www.robots.ox.ac.uk/~gari/teaching/cdt/A3/readings/ECG/Pan+Tompkins.pdf
 
 ## RESULTADOS
 ### ECG EN REPOSO
