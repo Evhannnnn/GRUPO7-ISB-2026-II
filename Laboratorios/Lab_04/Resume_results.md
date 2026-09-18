@@ -13,6 +13,10 @@ https://github.com/user-attachments/assets/f628d34b-dd42-46bc-8f33-f6d2f344a9b9
 
 Video1: Grabación de la obtención del ECG en reposo (D1)
 
+https://github.com/Evhannnnn/GRUPO7-ISB-2026-II/blob/main/Resources/ECGsignalD1reposo.png
+
+Figura1: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 en reposo
+
 #### DERIVADA 2
 
 https://github.com/user-attachments/assets/1f2b7614-e7b6-4d53-8304-683f3b848696
