@@ -13,7 +13,7 @@ https://github.com/user-attachments/assets/f628d34b-dd42-46bc-8f33-f6d2f344a9b9
 
 Video1: Grabación de la obtención del ECG en reposo (D1)
 
-![Señal de ECG en reposo](../../Resources/ECGsignalD1reposo.png)
+![ Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 en reposo](../../Resources/ECGsignalD1reposo.png)
 
 Figura1: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 en reposo
 
@@ -23,6 +23,9 @@ https://github.com/user-attachments/assets/1f2b7614-e7b6-4d53-8304-683f3b848696
 
 Video2: Grabación de la obtención del ECG en reposo (D2)
 
+![ Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 en reposo](../../Resources/ECGsignalD2reposo.png)
+
+Figura2: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 en reposo
 
 #### DERIVADA 3
 
@@ -30,6 +33,9 @@ https://github.com/user-attachments/assets/d2fdd054-467a-4087-8104-fe7b318112fe
 
 Video3: Grabación de la obtención del ECG en reposo (D3)
 
+![ Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 en reposo](../../Resources/ECGsignalD3reposo.png)
+
+Figura2: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 en reposo
 
 ### ECG LUEGO DE HIPERVENTILACIÓN
 
@@ -41,6 +47,9 @@ https://github.com/user-attachments/assets/32d2daf6-ae44-4ffe-a135-9df556e0aecc
 
 Video4: Grabación de la obtención del ECG luego de hiperventilación (D1)
 
+![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-hiperventilación](../../Resources/ECGsignalD1hiper.png)
+
+Figura4: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-hiperventilación
 
 #### DERIVADA 2
 
@@ -48,6 +57,9 @@ https://github.com/user-attachments/assets/ff9c6556-9c82-4c73-a654-c1c4e39d3e70
 
 Video5: Grabación de la obtención del ECG luego de hiperventilación (D2)
 
+![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-hiperventilación](../../Resources/ECGsignalD2hiper.png)
+
+Figura5: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-hiperventilación
 
 #### DERIVADA 3
 
@@ -55,6 +67,9 @@ https://github.com/user-attachments/assets/eb3d9747-d237-4f7d-a0ae-d785693266b2
 
 Video6: Grabación de la obtención del ECG luego de hiperventilación (D3)
 
+![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hiperventilación](../../Resources/ECGsignalD3hiper.png)
+
+Figura6: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hiperventilación
 
 ### ECG LUEGO DE HIPOVENTILACIÓN
 
@@ -66,12 +81,19 @@ https://github.com/user-attachments/assets/67a884ac-d969-404a-a6b8-6c59c11d6450
 
 Video7: Grabación de la obtención del ECG luego de hipoventilación (D1)
 
+![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-hipoventilación](../../Resources/ECGsignalD1hipo.png)
+
+Figura6: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-hipoventilación
 
 #### DERIVADA 2
 
 https://github.com/user-attachments/assets/e831cdd7-40a3-44de-84b4-f9c6fbc6540a
 
 Video8: Grabación de la obtención del ECG luego de hipoventilación (D2)
+
+![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-hipoventilación](../../Resources/ECGsignalD2hipo.png)
+
+Figura6: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-hipoventilación
 
 
 #### DERIVADA 3
@@ -80,6 +102,9 @@ https://github.com/user-attachments/assets/99a9f194-64ac-4c47-8d30-c3e55e6ecb78
 
 Video9: Grabación de la obtención del ECG luego de hipoventilación (D3)
 
+![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hipoventilación](../../Resources/ECGsignalD3hipo.png)
+
+Figura6: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hipoventilación
 
 ### ECG LUEGO DE EJERCICIO CARDIO
 El ejercicio realizado fue burpee, que combina peso corporal, flexiones y sentadillas. Este ejercicio aumenta la frecuencia cardíaca muy rápido porque el cuerpo hace cambios de nivel significativos. Este ejercicio fue realizado durante 5 minutos y solo fue realizado una vez; inmediatamente luego de su culminación se procedio a la realización de los 3 registros de manera secuencial.
