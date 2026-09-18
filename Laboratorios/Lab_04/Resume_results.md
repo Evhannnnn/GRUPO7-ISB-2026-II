@@ -172,6 +172,8 @@ Video1: Grabación de la obtención del ECG en reposo (D1)
 
 Figura1: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 en reposo
 
+Presenta una señal base estable donde los complejos QRS son visibles pero de menor amplitud relativa en comparación con D2, lo que refleja la propagación horizontal del impulso eléctrico a través del tórax. La señal cruda es bastante plana pero puede mostrar una ligera "borrosidad" por ruido térmico o interferencia electromagnética menor. Al aplicar el filtro Butterworth (0.5 - 40 Hz), la línea isoeléctrica se vuelve perfectamente horizontal y el trazado se suaviza, delineando de forma impecable las ondas P y T sin ruido de fondo.
+
 #### DERIVADA 2
 
 https://github.com/user-attachments/assets/1f2b7614-e7b6-4d53-8304-683f3b848696
@@ -180,7 +182,9 @@ Video2: Grabación de la obtención del ECG en reposo (D2)
 
 ![ Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 en reposo](../../Resources/ECGsignalD2reposo.png)
 
-Figura2: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 en reposo
+Figura2: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 en reposo.
+
+Muestra la estructura anatómica más clásica y nítida. El complejo QRS alcanza su mayor amplitud positiva debido a su alineación directa con el vector eléctrico principal del corazón, con ondas P, Q, R, S y T bien definidas. Filtrada: La señal cruda es de alta calidad geométrica. Al aplicar la función filtfilt (que garantiza que no haya distorsión de fase), los picos R mantienen exactamente su misma posición en el tiempo, pero la línea se vuelve mucho más definida, facilitando cualquier algoritmo posterior de detección de picos.
 
 #### DERIVADA 3
 
@@ -190,7 +194,9 @@ Video3: Grabación de la obtención del ECG en reposo (D3)
 
 ![ Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 en reposo](../../Resources/ECGsignalD3reposo.png)
 
-Figura2: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 en reposo
+Figura2: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 en reposo.
+
+Registra la diferencia de potencial apuntando hacia la cara inferior del corazón. Sus complejos QRS son de amplitud intermedia y complementan la visión espacial del vector cardíaco. La señal cruda en D3 es muy propensa a captar el zumbido de la red eléctrica (60 Hz) por el circuito que se forma con la pierna. Dado que el filtro Butterworth tiene su límite superior en 40.0 Hz, elimina de raíz toda interferencia de 60 Hz, haciendo desaparecer el patrón de "dientes de sierra" o aserrado típico de la señal en bruto.
 
 ### ECG LUEGO DE HIPERVENTILACIÓN
 
@@ -206,6 +212,8 @@ Video4: Grabación de la obtención del ECG luego de hiperventilación (D1)
 
 Figura4: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-hiperventilación
 
+Exhibe oscilaciones lentas originadas por la expansión y contracción torácica acelerada, variando levemente la amplitud del complejo QRS latido a latido por los cambios en la impedancia pulmonar. En la señal cruda se observa claramente cómo la gráfica "flota" o se ondula hacia arriba y hacia abajo siguiendo el ritmo de la respiración profunda. El corte de 0.5 Hz del filtro pasa-banda neutraliza drásticamente esta onda mecánica de baja frecuencia, aplanando la señal contra el eje central (amplitud 0 o línea base fija) y aislando el verdadero pulso cardíaco.
+
 #### DERIVADA 2
 
 https://github.com/user-attachments/assets/ff9c6556-9c82-4c73-a654-c1c4e39d3e70
@@ -216,6 +224,8 @@ Video5: Grabación de la obtención del ECG luego de hiperventilación (D2)
 
 Figura5: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-hiperventilación
 
+Se evidencia la arritmia sinusal respiratoria: los intervalos RR se acortan y alargan en estricta sincronía con la respiración rápida, con el eje cardíaco rotando levemente por el empuje del diafragma. La señal en bruto mezcla la arritmia eléctrica con una enorme deriva vertical de voltaje. El filtro elimina completamente esta deriva (gracias al corte en 0.5 Hz). El resultado es una onda perfectamente recta en la horizontal donde solo se aprecian los cambios de distancia temporal entre los picos R, eliminando la falsa apariencia de cambios masivos de voltaje.
+
 #### DERIVADA 3
 
 https://github.com/user-attachments/assets/eb3d9747-d237-4f7d-a0ae-d785693266b2
@@ -224,7 +234,9 @@ Video6: Grabación de la obtención del ECG luego de hiperventilación (D3)
 
 ![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hiperventilación](../../Resources/ECGsignalD3hiper.png)
 
-Figura6: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hiperventilación
+Figura6: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hiperventilación.
+
+Debido a su eje de medición vertical/inferior, D3 es sumamente susceptible a captar el "bombeo" del abdomen y el diafragma, mostrando rotaciones de eje eléctrico extremas. La señal cruda parece un "oleaje" descontrolado que frecuentemente saca la gráfica de escala debido al esfuerzo abdominal. El filtro en 0.5 Hz actúa como un estabilizador absoluto, sustrayendo matemáticamente la onda mecánica del vientre y restaurando la visualización de los latidos eléctricos que estaban montados sobre esa gran oscilación.
 
 ### ECG LUEGO DE HIPOVENTILACIÓN
 
@@ -240,6 +252,8 @@ Video7: Grabación de la obtención del ECG luego de hipoventilación (D1)
 
 Figura7: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-hipoventilación
 
+Al haber retención del aliento o respiración mínima, el movimiento torácico se suprime, generando una morfología del QRS estacionaria y una frecuencia cardíaca con mínima variabilidad. La señal cruda de por sí ya es muy estable y carece del "oleaje" respiratorio. El filtro aquí actúa de forma muy sutil; el límite de 40.0 Hz recorta micro-temblores musculares derivados de la tensión de sostener la respiración, resultando en un electrocardiograma de apariencia casi ideal.
+
 #### DERIVADA 2
 
 https://github.com/user-attachments/assets/e831cdd7-40a3-44de-84b4-f9c6fbc6540a
@@ -250,6 +264,7 @@ Video8: Grabación de la obtención del ECG luego de hipoventilación (D2)
 
 Figura8: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-hipoventilación
 
+Muestra una pronunciada estabilización temporal. Disminuye la variabilidad de la frecuencia cardíaca al cesar el estímulo respiratorio, produciendo ondas de amplitud e intervalos muy uniformes. Dada la excelente inmovilidad del sujeto, la señal cruda y la filtrada son visualmente muy parecidas. El filtrado de 40 Hz simplemente mejora la relación señal-ruido, permitiendo que la curva de repolarización (onda T) se dibuje sin la más mínima interferencia.
 
 #### DERIVADA 3
 
@@ -259,7 +274,9 @@ Video9: Grabación de la obtención del ECG luego de hipoventilación (D3)
 
 ![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hipoventilación](../../Resources/ECGsignalD3hipo.png)
 
-Figura9: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hipoventilación
+Figura9: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hipoventilación.
+
+La quietud diafragmática y abdominal produce una supresión total de artefactos musculares inferiores, revelando con gran precisión las ondas de la región diafragmática del miocardio. La señal cruda no sufre de deriva debido a la inmovilidad. El paso por la función filtfilt simplemente atenúa posibles ruidos de cableado o de conexión a los electrodos, dejando una curva suave y clínicamente medible.
 
 ### ECG LUEGO DE EJERCICIO CARDIO
 El ejercicio realizado fue burpee, que combina peso corporal, flexiones y sentadillas. Este ejercicio aumenta la frecuencia cardíaca muy rápido porque el cuerpo hace cambios de nivel significativos. Este ejercicio fue realizado durante 5 minutos y solo fue realizado una vez; inmediatamente luego de su culminación se procedio a la realización de los 3 registros de manera secuencial.
@@ -276,7 +293,9 @@ Video 11: Grabación de la obtención del ECG luego de ejercicio cardio (D1)
 
 ![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-cardio](../../Resources/ECGsignalD1cardio.png)
 
-Figura10: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-cardio
+Figura10: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-cardio.
+
+Se registra un acortamiento drástico de los intervalos RR (taquicardia por esfuerzo). Anatómicamente, capta mucho ruido debido a la tensión muscular de los brazos y el tronco. La señal cruda está fuertemente contaminada por ruido electromiográfico (EMG), viéndose como una franja gruesa, errática y "peluda". El límite superior de 40 Hz recorta violentamente las frecuencias altas de este ruido muscular. Aunque esto puede atenuar sutilmente la agudeza extrema del pico R original, limpia el trazado lo suficiente como para extraer los intervalos cardíacos.
 
 #### DERIVADA 2
 
@@ -286,7 +305,9 @@ Video 12: Grabación de la obtención del ECG luego de ejercicio cardio (D2)
 
 ![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-cardio](../../Resources/ECGsignalD2cardio.png)
 
-Figura11: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-cardio
+Figura11: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-cardio.
+
+Exhibe complejos QRS muy seguidos y de gran amplitud debidos a la fuerte contracción ventricular. Las ondas de menor voltaje (P y T) se vuelven muy difíciles de identificar visualmente. La gráfica cruda presenta saltos brutales en la línea base a causa de los impactos de la actividad aeróbica y una maraña de ruido de alta frecuencia. El filtro pasa-banda es indispensable aquí: el corte inferior estabiliza la gráfica en el centro, y el corte superior a 40 Hz rasura la estática muscular. Transforma una señal caótica en una serie de picos R limpios y secuenciales.
 
 #### DERIVADA 3
 
@@ -297,4 +318,6 @@ Video 13: Grabación de la obtención del ECG luego de ejercicio cardio (D3)
 ![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-cardio](../../Resources/ECGsignalD3cardio.png)
 
 Figura12: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-cardio
+
+Documenta la taquicardia severa. Sin embargo, sufre deformaciones morfológicas agudas debido a la participación de la cadera, el core y las piernas durante el desplazamiento o ejercicio físico. El registro crudo es altamente ruidoso, combinando oscilaciones de baja frecuencia (saltos) y alta frecuencia (impactos y músculos del tren inferior). Al aplicar la banda pasante de 0.5 a 40 Hz, el código extrae únicamente la energía principal del QRS. Aunque el complejo R resultante puede verse ligeramente más "redondeado" debido a la eliminación de las frecuencias superiores a 40 Hz, la señal se vuelve completamente interpretable para algoritmos de cálculo de frecuencia cardíaca (BPM).
 
