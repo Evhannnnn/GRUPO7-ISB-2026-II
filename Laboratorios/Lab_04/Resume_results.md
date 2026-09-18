@@ -83,7 +83,7 @@ Video7: Grabación de la obtención del ECG luego de hipoventilación (D1)
 
 ![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-hipoventilación](../../Resources/ECGsignalD1hipo.png)
 
-Figura6: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-hipoventilación
+Figura7: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-hipoventilación
 
 #### DERIVADA 2
 
@@ -93,7 +93,7 @@ Video8: Grabación de la obtención del ECG luego de hipoventilación (D2)
 
 ![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-hipoventilación](../../Resources/ECGsignalD2hipo.png)
 
-Figura6: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-hipoventilación
+Figura8: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-hipoventilación
 
 
 #### DERIVADA 3
@@ -104,7 +104,7 @@ Video9: Grabación de la obtención del ECG luego de hipoventilación (D3)
 
 ![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hipoventilación](../../Resources/ECGsignalD3hipo.png)
 
-Figura6: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hipoventilación
+Figura9: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-hipoventilación
 
 ### ECG LUEGO DE EJERCICIO CARDIO
 El ejercicio realizado fue burpee, que combina peso corporal, flexiones y sentadillas. Este ejercicio aumenta la frecuencia cardíaca muy rápido porque el cuerpo hace cambios de nivel significativos. Este ejercicio fue realizado durante 5 minutos y solo fue realizado una vez; inmediatamente luego de su culminación se procedio a la realización de los 3 registros de manera secuencial.
@@ -119,15 +119,27 @@ https://github.com/user-attachments/assets/ac8b715d-68f4-4e14-8d30-069b668b30b1
 
 Video 11: Grabación de la obtención del ECG luego de ejercicio cardio (D1)
 
+![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-cardio](../../Resources/ECGsignalD1cardio.png)
+
+Figura10: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 1 post-cardio
+
 #### DERIVADA 2
 
 https://github.com/user-attachments/assets/62eb47bb-b970-4988-9899-3c817e9af570
 
 Video 12: Grabación de la obtención del ECG luego de ejercicio cardio (D2)
 
+![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-cardio](../../Resources/ECGsignalD2cardio.png)
+
+Figura11: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 2 post-cardio
+
 #### DERIVADA 3
 
 https://github.com/user-attachments/assets/625bc2b4-68b3-4f26-b253-87bbdaf5a8b1
 
 Video 13: Grabación de la obtención del ECG luego de ejercicio cardio (D3)
+
+![Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-cardio](../../Resources/ECGsignalD3cardio.png)
+
+Figura12: Grafica señal ECG cruda (morado) y señal ECG filtrada (rosado) de la derivada 3 post-cardio
 
