@@ -5,7 +5,7 @@ El derecho a la comunicación, reconocido como fundamental por la Convención so
 
 # Archivo del proyecto
 
-[Documento de Google Drive](https://drive.google.com/file/d/XXXXXXXX/view)
+[Video](https://drive.google.com/file/d/XXXXXXXX/view)
 
 ## REFERENCIAS
 [1] Discapacidad. (n.d.). https://www.who.int/es/news-room/fact-sheets/detail/disability-and-health
