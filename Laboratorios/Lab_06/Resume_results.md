@@ -154,7 +154,7 @@ El registro se realizó con el sujeto aislado sensorialmente, manteniendo la mir
   <img src="../../Resources/EEG_reposo_imagen.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
 </div>
 
-Figura4: *Imagen sujeto en reposo en primer ejericio*.
+Figura 1: *Imagen sujeto en reposo en primer ejericio*.
 
 ### 2. SEÑAL EEG CON ESTÍMULO VISUAL (OJOS ABIERTOS Y CERRADOS)
 El ejercicio consistió en pedirle al sujeto que observara un objeto con atención manteniendo los ojos abiertos durante 5 segundos y luego los cerrara durante 5 segundos, repitiendo este ciclo aproximadamente 5 veces (cubriendose los odios con audifonos inalambricos sin cancelacion de audio).
@@ -173,7 +173,7 @@ Se colocaron dos canciones a través de audífonos inalámbricos al sujeto (una 
   <img src="../../Resources/EEG_musica_tranquila.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
 </div>
 
-Figura4: *Imagen señal en OpenSignal con musica tranquila*.
+Figura : *Imagen señal en OpenSignal con musica tranquila*.
 
 Como musica tranquila se elijio la cancion *False memory syndrome* de *The Caretaker*
 
@@ -181,6 +181,9 @@ Como musica tranquila se elijio la cancion *False memory syndrome* de *The Caret
   <img src="../../Resources/EEG_musica_estruendosa.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
 </div>
 
+Figura : *Imagen señal en OpenSignal con musica estruendosa*.
+
+Como musica tranquila se elijio la cancion *Obzen* de *Meshuggah*
 
 ## Preguntas
 
@@ -227,7 +230,3 @@ Las frecuencias que deberían cambiar son las comprendidas de 0 a 12 Hz y verse 
 
 #### **P7. Según tus conocimientos, ¿la amplitud del EEG equivale al nivel de concentración/enfoque que has aplicado?**
 La amplitud suele ser proporcional al nivel de concentración sin embargo con lo experimentado en el laboratorio vemos que en algunos casos no se corresponde directamente, esto puede deberse a que no hay un reposo total en la persona o un estrés tan elevado como se esperaría para activar un potencial postsináptico en la frecuencia esperada. 
-
-Figura4: *Imagen señal en OpenSignal con musica estruendosa*.
-
-Como musica tranquila se elijio la cancion *Obzen* de *Meshuggah*
