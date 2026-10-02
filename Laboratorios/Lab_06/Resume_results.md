@@ -70,3 +70,5 @@ Se le realizaron 5 preguntas complejas al sujeto sin que este verbalizara las re
 
 ### 4. SEÑAL EOG ANTE ESTÍMULOS AUDITIVOS (MÚSICA RELAJANTE VS. ESTRUENDOSA)
 Se colocaron dos canciones a través de audífonos inalámbricos al sujeto (una considerada relajante y otra estruendosa), con una duración de 2 minutos por cada pista musical, manteniendo el antifaz puesto.
+### 4. SEÑAL EOG ANTE ESTÍMULOS AUDITIVOS (MÚSICA RELAJANTE VS. ESTRUENDOSA)
+Se colocaron dos canciones a través de audífonos inalámbricos al sujeto (una considerada relajante y otra estruendosa), con una duración de 2 minutos por cada pista musical, manteniendo el antifaz puesto.
