@@ -22,7 +22,9 @@ Figura4: Imagen señal EOG cruda de prueba 4 en Open Signal.
 
 En esta imagen se observa la señal EEG de una persona en reposo, las señales esperadas serían las siguientes:
 
-![Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa](../../Resources/Lab6_foto_cuestionario_P4_2.jpg)
+<div align="center">
+  <img src="../../Resources/Lab6_foto_cuestionario_P4_2.jpg" width="800" alt="Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa">
+</div>
 
 Figura4: Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa.
 
@@ -34,7 +36,9 @@ Si, la principal diferencia es que FP1 se encuentra en el lóbulo izquierdo y FP
 
 #### **P6. ¿Qué frecuencias se supone que deben cambiar en las tareas asignadas? ¿Puedes ver estos cambios específicos en la señal en bruto (RAW)? Describe lo que ves.**
 
-![Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa](../../Resources/Lab6_foto_cuestionario_P6.jpg)
+<div align="center">
+  <img src="../../Resources/Lab6_foto_cuestionario_P6.jpg" width="800" alt="Imagen señal EOG cruda en Open Signal">
+</div>
 
 Figura4: Imagen señal EOG cruda en Open Signal.
 
