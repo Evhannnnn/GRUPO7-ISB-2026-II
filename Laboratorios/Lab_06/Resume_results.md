@@ -131,13 +131,13 @@ Los dos electrodos de medición se situaron sobre la posición frontal del siste
 
 La sesión se estructuró en cuatro bloques, cada uno orientado a provocar un cambio identificable en una banda concreta y, al mismo tiempo, a controlar las variables que podrían enmascararlo.
 
-El sujeto permaneció aislado sensorialmente mediante antifaz y tapones auditivos durante toda la sesión. Esta decisión persigue dos objetivos. El primero es eliminar los estímulos visuales y auditivos no controlados, que de otro modo activarían las áreas occipital y temporal de forma impredecible. El segundo es garantizar que el único estímulo presente en cada bloque sea el que se pretende evaluar, de manera que el cambio observado en la señal pueda atribuirse a esa tarea y no al entorno.
+El sujeto permaneció aislado sensorialmente mediante antifaz y oclusión auditiva durante toda la sesión. Esta decisión persigue dos objetivos. El primero es eliminar los estímulos visuales y auditivos no controlados, que de otro modo activarían las áreas occipital y temporal de forma impredecible. El segundo es garantizar que el único estímulo presente en cada bloque sea el que se pretende evaluar, de manera que el cambio observado en la señal pueda atribuirse a esa tarea y no al entorno.
 
 **Lectura basal.** Se registró entre uno y dos minutos con los estímulos externos anulados. Este tramo no persigue observar ningún fenómeno sino establecer el nivel de referencia del sistema. En ausencia de tarea, lo que queda registrado es la actividad de fondo del sujeto sumada al ruido del montaje, de modo que la calidad de este tramo determina si los bloques posteriores son interpretables. Una línea base con oscilaciones amplias advierte de un problema de contacto o de interferencia antes de que se invierta tiempo en las maniobras siguientes.
 
 **Ciclos de apertura y cierre de ojos.** Se realizaron cinco repeticiones con cinco segundos entre el cierre y la apertura, manteniendo la vista centrada en un punto fijo. Este bloque busca el fenómeno más documentado del electroencefalograma: el aumento de la potencia de la banda alfa con los ojos cerrados y su supresión al abrirlos. La fijación de la mirada en un punto durante la fase de ojos abiertos cumple la función descrita en el apartado de artefactos, ya que sin ella los movimientos oculares introducirían ruido precisamente en la fase que se desea comparar. La repetición en cinco ciclos permite además verificar que el efecto es consistente y no un hallazgo aislado.
 
-**Preguntas complejas.** Se retiró únicamente uno de los tapones auditivos y se susurraron cinco preguntas complejas, sin solicitar respuesta inmediata y dejando un margen de reflexión de veinte a treinta segundos. Cada elemento de este protocolo responde a una razón. Retirar un solo tapón mantiene la atenuación parcial del entorno y limita el estímulo auditivo a la voz del evaluador. Susurrar reduce la intensidad del estímulo sonoro, de modo que la respuesta registrada corresponda al procesamiento cognitivo y no a un sobresalto acústico. No solicitar respuesta verbal evita la activación de la musculatura facial y mandibular, que contaminaría el registro justo en el momento de mayor interés. El margen de reflexión proporciona una ventana suficientemente larga para que el esfuerzo cognitivo se sostenga y resulte visible en las bandas beta y gamma.
+**Preguntas complejas.** Se retiró únicamente uno de los tapones auditivos y se susurraron cinco preguntas complejas, sin solicitar respuesta inmediata y dejando un margen de reflexión de quince a veinte segundos. Cada elemento de este protocolo responde a una razón. Retirar un solo tapón mantiene la atenuación parcial del entorno y limita el estímulo auditivo a la voz del evaluador. Susurrar reduce la intensidad del estímulo sonoro, de modo que la respuesta registrada corresponda al procesamiento cognitivo y no a un sobresalto acústico. No solicitar respuesta verbal evita la activación de la musculatura facial y mandibular, que contaminaría el registro justo en el momento de mayor interés. El margen de reflexión proporciona una ventana suficientemente larga para que el esfuerzo cognitivo se sostenga y resulte visible en las bandas beta y gamma.
 
 **Estímulos auditivos contrastados.** Se reprodujeron dos piezas musicales de carácter opuesto, una relajante y otra estruendosa, manteniendo el antifaz colocado. El contraste entre ambas permite comparar dos estados de activación dentro del mismo sujeto y la misma sesión, lo que elimina la variabilidad entre personas y entre montajes. Mantener el antifaz asegura que la diferencia observada proceda del estímulo auditivo y no de información visual concurrente.
 
@@ -149,35 +149,41 @@ El conjunto responde a un principio de diseño experimental: para atribuir un ca
 
 ### 1. SEÑAL EEG EN REPOSO (LÍNEA BASE)
 
-El registro se realizó con el sujeto aislado sensorialmente mediante antifaz y tapones auditivos, manteniendo la mirada fija y evitando movimientos oculares voluntarios, con el fin de captar la señal basal.
+El registro se realizó con el sujeto aislado sensorialmente, manteniendo la mirada fija y evitando movimientos oculares voluntarios, con el fin de captar la señal basal.
 
-<!-- Imagen del montaje y captura de la señal -->
+<div align="center">
+  <img src="../../Resources/EOG_reposo_imagen.jpg" width="800" alt="Sujeto en reposo durante el primer ejercicio">
+</div>
 
-<!-- Descripción de lo observado: nivel de la línea base, presencia o ausencia de deriva, artefactos identificados -->
+Figura 1: Sujeto en reposo durante el primer ejercicio.
 
 ### 2. SEÑAL EEG CON ESTÍMULO VISUAL (OJOS ABIERTOS Y CERRADOS)
 
-El ejercicio consistió en pedir al sujeto que mantuviera los ojos abiertos durante cinco segundos observando un punto fijo y a continuación los cerrara durante cinco segundos, repitiendo el ciclo cinco veces. El antifaz se levantó durante la fase visual y los tapones auditivos se mantuvieron colocados.
-
-<!-- Captura del tramo con los cinco ciclos marcados -->
-
-<!-- Comparación entre las fases de ojos abiertos y ojos cerrados -->
+El ejercicio consistió en pedir al sujeto que observara un objeto con atención manteniendo los ojos abiertos durante cinco segundos y a continuación los cerrara durante cinco segundos, repitiendo este ciclo aproximadamente cinco veces. Los oídos permanecieron cubiertos con audífonos inalámbricos sin cancelación de audio.
 
 ### 3. SEÑAL EEG ANTE PREGUNTAS COMPLEJAS (PROCESAMIENTO COGNITIVO)
 
-Se formularon cinco preguntas complejas al sujeto sin que este verbalizara las respuestas. Para ello se retiró únicamente uno de los tapones auditivos en el momento de formular cada pregunta, concediendo un margen de quince a veinte segundos de reflexión en silencio antes de la siguiente.
-
-<!-- Captura del tramo, señalando el instante de cada pregunta -->
-
-<!-- Descripción de la respuesta observada tras cada estímulo -->
+Se realizaron cinco preguntas complejas al sujeto sin que este verbalizara las respuestas. Para ello se le retiró únicamente uno de los tapones de los oídos al momento de formular la pregunta, dándole un margen de quince a veinte segundos para pensar en silencio antes de la siguiente interrogante.
 
 ### 4. SEÑAL EEG ANTE ESTÍMULOS AUDITIVOS (MÚSICA RELAJANTE Y ESTRUENDOSA)
 
-Se reprodujeron dos piezas musicales mediante audífonos inalámbricos, una considerada relajante y otra estruendosa, con una duración de dos minutos por pista y manteniendo el antifaz colocado.
+Se reprodujeron dos canciones a través de audífonos inalámbricos, una considerada relajante y otra estruendosa, con una duración de dos minutos por cada pista musical y manteniendo el antifaz puesto.
 
-<!-- Captura de ambos tramos -->
+<div align="center">
+  <img src="../../Resources/EOG_musica_tranquila.jpg" width="800" alt="Señal en OpenSignals durante la música tranquila">
+</div>
 
-<!-- Comparación entre las dos condiciones -->
+Figura 2: Señal en OpenSignals durante la música tranquila.
+
+Como música tranquila se eligió la canción *False memory syndrome* de *The Caretaker*.
+
+<div align="center">
+  <img src="../../Resources/EOG_musica_estruendosa.jpg" width="800" alt="Señal en OpenSignals durante la música estruendosa">
+</div>
+
+Figura 3: Señal en OpenSignals durante la música estruendosa.
+
+Como música estruendosa se eligió la canción *Obzen* de *Meshuggah*.
 
 ---
 
@@ -211,7 +217,7 @@ Conviene matizar que lo que se modifica no es un pensamiento concreto sino el es
   <img src="../../Resources/Lab6_foto_cuestionario_P4.jpg" width="800" alt="Señal EEG cruda de la prueba en reposo en OpenSignals">
 </div>
 
-Figura 1: Señal EEG cruda registrada en OpenSignals.
+Figura 4: Señal EEG cruda registrada en OpenSignals.
 
 En esta imagen se observa la señal EEG de una persona en reposo. Las señales esperadas serían las siguientes:
 
@@ -219,7 +225,7 @@ En esta imagen se observa la señal EEG de una persona en reposo. Las señales e
   <img src="../../Resources/Lab6_foto_cuestionario_P4_2.jpg" width="800" alt="Representación gráfica de las ondas cerebrales delta, theta y alfa">
 </div>
 
-Figura 2: Representación gráfica de las ondas cerebrales delta, theta y alfa.
+Figura 5: Representación gráfica de las ondas cerebrales delta, theta y alfa.
 
 Vemos una diferencia relevante debido al ruido que puede presentarse en el entorno donde fue tomada la señal, además de errores de conexión del EEG al paciente.
 
@@ -237,7 +243,7 @@ A esa diferencia anatómica se suma la asimetría funcional entre hemisferios, a
   <img src="../../Resources/Lab6_foto_cuestionario_P6.jpg" width="800" alt="Señal EEG cruda durante la tarea cognitiva en OpenSignals">
 </div>
 
-Figura 3: Señal EEG cruda durante la tarea cognitiva en OpenSignals.
+Figura 6: Señal EEG cruda durante la tarea cognitiva en OpenSignals.
 
 Las frecuencias que deberían cambiar son las comprendidas de 0 a 12 Hz, que corresponden a las bandas delta, theta y alfa, y las producidas de 12 Hz en adelante, correspondientes a las bandas beta y gamma.
 
@@ -255,6 +261,11 @@ A ello se suma que la amplitud registrada depende de condiciones ajenas al sujet
 
 ---
 
+## CONCLUSIONES
+
+<!-- Redactar a partir de lo observado en los cuatro bloques -->
+
+---
 
 ## REFERENCIAS
 
