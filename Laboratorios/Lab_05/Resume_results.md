@@ -52,9 +52,16 @@ La amplitud suele ser proporcional al nivel de concentración sin embargo con lo
 ### 1. SEÑAL EOG EN REPOSO (LÍNEA BASE)
 El registro se realizó con el sujeto aislado sensorialmente, manteniendo la mirada fija y evitando movimientos oculares voluntarios para captar la señal basal.
 
+<div align="center">
+  <img src="../../Resources/EOG_reposo_imagen.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
+</div>
+
+Figura4: *Imagen sujeto en reposo en primer ejericio*.
 
 ### 2. SEÑAL EOG CON ESTÍMULO VISUAL (OJOS ABIERTOS Y CERRADOS)
 El ejercicio consistió en pedirle al sujeto que observara un objeto con atención manteniendo los ojos abiertos durante 5 segundos y luego los cerrara durante 5 segundos, repitiendo este ciclo aproximadamente 5 veces (utilizando el antifaz levantado para la fase visual y tapones para los oídos).
+
+
 
 
 ### 3. SEÑAL EOG ANTE PREGUNTAS COMPLEJAS (PROCESAMIENTO COGNITIVO)
