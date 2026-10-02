@@ -14,7 +14,7 @@ El cerebro humano tiene alrededor de 85 mil millones de neuronas, responsables d
 
 El tipo celular determinante para medir campos eléctricos desde el cuero cabelludo es la neurona piramidal, cuya actividad resulta suficientemente intensa para atravesar las distintas capas de tejido. Esto se debe a su orientación específica, perpendicular a la superficie cortical, que hace que los campos de muchas neuronas vecinas se sumen en lugar de cancelarse.
 
-De ahí se deriva una consecuencia práctica. Lo que llega al electrodo no es la actividad de una neurona concreta sino la suma espacial de millones de potenciales postsinápticos sincronizados. Una señal de amplitud muy reducida que, además, atraviesa el cráneo y el cuero cabelludo antes de alcanzar el sensor.
+De ahí se deriva una consecuencia práctica. Lo que llega al electrodo no es la actividad de una neurona concreta sino la suma espacial de millones de potenciales postsinápticos sincronizados. Una señal de amplitud muy reducida que, además, atraviesa el cráneo y el cuero cabelludo antes de alcanzar el sensor. 
 
 ### 3. Organización funcional del cerebro
 
