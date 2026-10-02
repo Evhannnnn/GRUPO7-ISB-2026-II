@@ -18,7 +18,7 @@ Es posible influir en la señal de EEG ya que las frecuencias están asociadas a
   <img src="../../Resources/Lab6_foto_cuestionario_P4.jpg" width="800" alt="Imagen señal EOG cruda de prueba 4 en Open Signal">
 </div>
 
-Figura4: Imagen señal EOG cruda de prueba 4 en Open Signal.
+Figura4: *Imagen señal EOG cruda de prueba 4 en Open Signal*.
 
 En esta imagen se observa la señal EEG de una persona en reposo, las señales esperadas serían las siguientes:
 
@@ -26,7 +26,7 @@ En esta imagen se observa la señal EEG de una persona en reposo, las señales e
   <img src="../../Resources/Lab6_foto_cuestionario_P4_2.jpg" width="800" alt="Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa">
 </div>
 
-Figura4: Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa.
+Figura4: *Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa*.
 
 Vemos una diferencia relevante debido al ruido que puede presentarse en el entorno donde fue tomada la señal además de errores de conexión del EEG al paciente.
 
@@ -40,7 +40,7 @@ Si, la principal diferencia es que FP1 se encuentra en el lóbulo izquierdo y FP
   <img src="../../Resources/Lab6_foto_cuestionario_P6.jpg" width="800" alt="Imagen señal EOG cruda en Open Signal">
 </div>
 
-Figura4: Imagen señal EOG cruda en Open Signal.
+Figura4: *Imagen señal EOG cruda en Open Signal*.
 
 Las frecuencias que deberían cambiar son las comprendidas de 0 a 12 Hz y verse las producidas de 12 Hz a 25 Hz. En la señal presentada se puede ver un cambio significativo en las frecuencias respecto a la señal de reposo, esta figura corresponde a la actividad donde se pregunta algo intrigante a la persona, el pico es la fase de pensamiento inicial y la señal más atenuada corresponde a fase de concentración.
 
@@ -49,3 +49,17 @@ La amplitud suele ser proporcional al nivel de concentración sin embargo con lo
 
 ## RESULTADOS
 
+### 1. SEÑAL EOG EN REPOSO (LÍNEA BASE)
+El registro se realizó con el sujeto aislado sensorialmente, manteniendo la mirada fija y evitando movimientos oculares voluntarios para captar la señal basal.
+
+
+### 2. SEÑAL EOG CON ESTÍMULO VISUAL (OJOS ABIERTOS Y CERRADOS)
+El ejercicio consistió en pedirle al sujeto que observara un objeto con atención manteniendo los ojos abiertos durante 5 segundos y luego los cerrara durante 5 segundos, repitiendo este ciclo aproximadamente 5 veces (utilizando el antifaz levantado para la fase visual y tapones para los oídos).
+
+
+### 3. SEÑAL EOG ANTE PREGUNTAS COMPLEJAS (PROCESAMIENTO COGNITIVO)
+Se le realizaron 5 preguntas complejas al sujeto sin que este verbalizara las respuestas. Para ello, se le retiró únicamente uno de los tapones de los oídos al momento de formular la pregunta, dándole un margen de 15 a 20 segundos para pensar en silencio antes de la siguiente interrogante.
+
+
+### 4. SEÑAL EOG ANTE ESTÍMULOS AUDITIVOS (MÚSICA RELAJANTE VS. ESTRUENDOSA)
+Se colocaron dos canciones a través de audífonos inalámbricos al sujeto (una considerada relajante y otra estruendosa), con una duración de 2 minutos por cada pista musical, manteniendo el antifaz puesto.
