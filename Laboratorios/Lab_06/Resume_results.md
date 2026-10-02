@@ -70,5 +70,25 @@ Se le realizaron 5 preguntas complejas al sujeto sin que este verbalizara las re
 
 ### 4. SEÑAL EOG ANTE ESTÍMULOS AUDITIVOS (MÚSICA RELAJANTE VS. ESTRUENDOSA)
 Se colocaron dos canciones a través de audífonos inalámbricos al sujeto (una considerada relajante y otra estruendosa), con una duración de 2 minutos por cada pista musical, manteniendo el antifaz puesto.
+
+
+
+
 ### 4. SEÑAL EOG ANTE ESTÍMULOS AUDITIVOS (MÚSICA RELAJANTE VS. ESTRUENDOSA)
 Se colocaron dos canciones a través de audífonos inalámbricos al sujeto (una considerada relajante y otra estruendosa), con una duración de 2 minutos por cada pista musical, manteniendo el antifaz puesto.
+
+<div align="center">
+  <img src="../../Resources/EOG_musica_tranquila.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
+</div>
+
+Figura4: *Imagen señal en OpenSignal con musica tranquila*.
+
+Como musica tranquila se elijio la cancion *False memory syndrome* de *The Caretaker*
+
+<div align="center">
+  <img src="../../Resources/EOG_musica_estruendosa.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
+</div>
+
+Figura4: *Imagen señal en OpenSignal con musica estruendosa*.
+
+Como musica tranquila se elijio la cancion *Obzen* de *Meshuggah*
