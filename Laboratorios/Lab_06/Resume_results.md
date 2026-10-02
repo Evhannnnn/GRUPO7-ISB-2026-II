@@ -230,3 +230,19 @@ Las frecuencias que deberían cambiar son las comprendidas de 0 a 12 Hz y verse 
 
 #### **P7. Según tus conocimientos, ¿la amplitud del EEG equivale al nivel de concentración/enfoque que has aplicado?**
 La amplitud suele ser proporcional al nivel de concentración sin embargo con lo experimentado en el laboratorio vemos que en algunos casos no se corresponde directamente, esto puede deberse a que no hay un reposo total en la persona o un estrés tan elevado como se esperaría para activar un potencial postsináptico en la frecuencia esperada. 
+
+## CONCLUSIONES
+
+<!-- Redactar a partir de lo observado en los cuatro bloques -->
+
+---
+
+## REFERENCIAS
+
+- PLUX Wireless Biosignals. BITalino (r)evolution Lab Guide, Home Guide número 3: Electroencephalography. 2021.
+- Herculano-Houzel, S. The human brain in numbers: a linearly scaled-up primate brain. Frontiers in Human Neuroscience, volumen 3, 2009.
+- Farnsworth, B. EEG Electroencephalography: The Complete Pocket Guide. 2019.
+- Bansal, D.; Mahajan, R. EEG-Based Brain-Computer Interfaces: Cognitive Analysis and Control Applications. Academic Press, 2019.
+- Abhang, P. A.; Gawali, B. W.; Mehrotra, S. C. Technological Basics of EEG Recording and Operation of Apparatus. Introduction to EEG and Speech-Based Emotion Recognition, Academic Press, páginas 19 a 50, 2016.
+- Sazgar, M.; Young, M. G. Overview of EEG, electrode placement, and montages. Absolute Epilepsy and EEG Rotation Review, Springer, páginas 117 a 125, 2019.
+- Machado, S. et al. EEG-based brain-computer interfaces: an overview of basic concepts and clinical applications in neurorehabilitation. Reviews in the Neurosciences, volumen 21, número 6, páginas 451 a 468, 2010.
