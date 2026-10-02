@@ -147,36 +147,30 @@ El conjunto responde a un principio de diseño experimental: para atribuir un ca
 
 ## RESULTADOS
 
-### 1. SEÑAL EOG EN REPOSO (LÍNEA BASE)
+### 1. SEÑAL EEG EN REPOSO (LÍNEA BASE)
 El registro se realizó con el sujeto aislado sensorialmente, manteniendo la mirada fija y evitando movimientos oculares voluntarios para captar la señal basal.
 
 <div align="center">
-  <img src="../../Resources/EOG_reposo_imagen.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
+  <img src="../../Resources/EEG_reposo_imagen.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
 </div>
 
 Figura4: *Imagen sujeto en reposo en primer ejericio*.
 
-### 2. SEÑAL EOG CON ESTÍMULO VISUAL (OJOS ABIERTOS Y CERRADOS)
+### 2. SEÑAL EEG CON ESTÍMULO VISUAL (OJOS ABIERTOS Y CERRADOS)
 El ejercicio consistió en pedirle al sujeto que observara un objeto con atención manteniendo los ojos abiertos durante 5 segundos y luego los cerrara durante 5 segundos, repitiendo este ciclo aproximadamente 5 veces (cubriendose los odios con audifonos inalambricos sin cancelacion de audio).
 
 
 
 
-### 3. SEÑAL EOG ANTE PREGUNTAS COMPLEJAS (PROCESAMIENTO COGNITIVO)
+### 3. SEÑAL EEG ANTE PREGUNTAS COMPLEJAS (PROCESAMIENTO COGNITIVO)
 Se le realizaron 5 preguntas complejas al sujeto sin que este verbalizara las respuestas. Para ello, se le retiró únicamente uno de los tapones de los oídos al momento de formular la pregunta, dándole un margen de 15 a 20 segundos para pensar en silencio antes de la siguiente interrogante.
 
 
-### 4. SEÑAL EOG ANTE ESTÍMULOS AUDITIVOS (MÚSICA RELAJANTE VS. ESTRUENDOSA)
-Se colocaron dos canciones a través de audífonos inalámbricos al sujeto (una considerada relajante y otra estruendosa), con una duración de 2 minutos por cada pista musical, manteniendo el antifaz puesto.
-
-
-
-
-### 4. SEÑAL EOG ANTE ESTÍMULOS AUDITIVOS (MÚSICA RELAJANTE VS. ESTRUENDOSA)
+### 4. SEÑAL EEG ANTE ESTÍMULOS AUDITIVOS (MÚSICA RELAJANTE VS. ESTRUENDOSA)
 Se colocaron dos canciones a través de audífonos inalámbricos al sujeto (una considerada relajante y otra estruendosa), con una duración de 2 minutos por cada pista musical, manteniendo el antifaz puesto.
 
 <div align="center">
-  <img src="../../Resources/EOG_musica_tranquila.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
+  <img src="../../Resources/EEG_musica_tranquila.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
 </div>
 
 Figura4: *Imagen señal en OpenSignal con musica tranquila*.
@@ -184,7 +178,7 @@ Figura4: *Imagen señal en OpenSignal con musica tranquila*.
 Como musica tranquila se elijio la cancion *False memory syndrome* de *The Caretaker*
 
 <div align="center">
-  <img src="../../Resources/EOG_musica_estruendosa.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
+  <img src="../../Resources/EEG_musica_estruendosa.jpg" width="800" alt="Imagen sujeto en reposo en primer ejericio">
 </div>
 
 
@@ -202,10 +196,10 @@ Es posible influir en la señal de EEG ya que las frecuencias están asociadas a
 #### **P4. Muestra una captura de pantalla de una porción relevante de los datos de EEG dentro del experimento propuesto. ¿Se corresponde esta señal con lo que esperabas? ¿Por qué?**
 
 <div align="center">
-  <img src="../../Resources/Lab6_foto_cuestionario_P4.jpg" width="800" alt="Imagen señal EOG cruda de prueba 4 en Open Signal">
+  <img src="../../Resources/Lab6_foto_cuestionario_P4.jpg" width="800" alt="Imagen señal EEG cruda de prueba 4 en Open Signal">
 </div>
 
-Figura4: *Imagen señal EOG cruda de prueba 4 en Open Signal*.
+Figura4: *Imagen señal EEG cruda de prueba 4 en Open Signal*.
 
 En esta imagen se observa la señal EEG de una persona en reposo, las señales esperadas serían las siguientes:
 
@@ -224,10 +218,10 @@ Si, la principal diferencia es que FP1 se encuentra en el lóbulo izquierdo y FP
 #### **P6. ¿Qué frecuencias se supone que deben cambiar en las tareas asignadas? ¿Puedes ver estos cambios específicos en la señal en bruto (RAW)? Describe lo que ves.**
 
 <div align="center">
-  <img src="../../Resources/Lab6_foto_cuestionario_P6.jpg" width="800" alt="Imagen señal EOG cruda en Open Signal">
+  <img src="../../Resources/Lab6_foto_cuestionario_P6.jpg" width="800" alt="Imagen señal EEG cruda en Open Signal">
 </div>
 
-Figura4: *Imagen señal EOG cruda en Open Signal*.
+Figura4: *Imagen señal EEG cruda en Open Signal*.
 
 Las frecuencias que deberían cambiar son las comprendidas de 0 a 12 Hz y verse las producidas de 12 Hz a 25 Hz. En la señal presentada se puede ver un cambio significativo en las frecuencias respecto a la señal de reposo, esta figura corresponde a la actividad donde se pregunta algo intrigante a la persona, el pico es la fase de pensamiento inicial y la señal más atenuada corresponde a fase de concentración.
 
