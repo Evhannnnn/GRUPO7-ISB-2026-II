@@ -13,13 +13,15 @@ El filtro pasa banda de 0.8 a 48 Hz es esencial para este tipo de señales debid
 Es posible influir en la señal de EEG ya que las frecuencias están asociadas a distintos potenciales postsinápticos captados a frecuencias determinadas para el estado de relajación y el estado de pensamiento. Dentro de las acciones que se podría realizar para activar una determinada banda de frecuencia está el reposo y la somnolencia para activar las bandas alfa delta o theta y un estado de pensamiento activo y estrés para activar las bandas beta y gamma.
 
 **P4. Muestra una captura de pantalla de una porción relevante de los datos de EEG dentro del experimento propuesto. ¿Se corresponde esta señal con lo que esperabas? ¿Por qué?**
-<div align="center">
-  <img src="../../Resources/Lab6_foto_cuestionario_P4.jpg" width="300" alt="Imagen señal EOG cruda de prueba 4 en Open Signal">
-</div>
+
+![Imagen señal EOG cruda de prueba 4 en Open Signal](../../Resources/Lab6_foto_cuestionario_P4.jpg)
+
 Figura4: Imagen señal EOG cruda de prueba 4 en Open Signal.
 
 En esta imagen se observa la señal EEG de una persona en reposo, las señales esperadas serían las siguientes:
+
 ![Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa](../../Resources/Lab6_foto_cuestionario_P4_2.jpg)
+
 Figura4: Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa.
 
 Vemos una diferencia relevante debido al ruido que puede presentarse en el entorno donde fue tomada la señal además de errores de conexión del EEG al paciente.
@@ -28,7 +30,9 @@ Vemos una diferencia relevante debido al ruido que puede presentarse en el entor
 Si, la principal diferencia es que FP1 se encuentra en el lóbulo izquierdo y FP2 en el derecho. Los notación FP refiere a que se ubican ambos en la región frontopolar y la notación de números indica para los impares la ubicación en la izquierda y los pares en la derecha. 
 
 **P6. ¿Qué frecuencias se supone que deben cambiar en las tareas asignadas? ¿Puedes ver estos cambios específicos en la señal en bruto (RAW)? Describe lo que ves.**
+
 ![Imagen representación grafica de ondas cerebrales Delta, Theta y Alfa](../../Resources/Lab6_foto_cuestionario_P6.jpg)
+
 Figura4: Imagen señal EOG cruda en Open Signal.
 
 Las frecuencias que deberían cambiar son las comprendidas de 0 a 12 Hz y verse las producidas de 12 Hz a 25 Hz. En la señal presentada se puede ver un cambio significativo en las frecuencias respecto a la señal de reposo, esta figura corresponde a la actividad donde se pregunta algo intrigante a la persona, el pico es la fase de pensamiento inicial y la señal más atenuada corresponde a fase de concentración.
