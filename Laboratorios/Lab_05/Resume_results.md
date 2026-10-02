@@ -14,7 +14,9 @@ Es posible influir en la señal de EEG ya que las frecuencias están asociadas a
 
 #### **P4. Muestra una captura de pantalla de una porción relevante de los datos de EEG dentro del experimento propuesto. ¿Se corresponde esta señal con lo que esperabas? ¿Por qué?**
 
-![Imagen señal EOG cruda de prueba 4 en Open Signal](../../Resources/Lab6_foto_cuestionario_P4.jpg)
+<div align="center">
+  <img src="../../Resources/Lab6_foto_cuestionario_P4.jpg" width="800" alt="Imagen señal EOG cruda de prueba 4 en Open Signal">
+</div>
 
 Figura4: Imagen señal EOG cruda de prueba 4 en Open Signal.
 
