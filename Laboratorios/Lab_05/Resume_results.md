@@ -59,7 +59,7 @@ El registro se realizó con el sujeto aislado sensorialmente, manteniendo la mir
 Figura4: *Imagen sujeto en reposo en primer ejericio*.
 
 ### 2. SEÑAL EOG CON ESTÍMULO VISUAL (OJOS ABIERTOS Y CERRADOS)
-El ejercicio consistió en pedirle al sujeto que observara un objeto con atención manteniendo los ojos abiertos durante 5 segundos y luego los cerrara durante 5 segundos, repitiendo este ciclo aproximadamente 5 veces (utilizando el antifaz levantado para la fase visual y tapones para los oídos).
+El ejercicio consistió en pedirle al sujeto que observara un objeto con atención manteniendo los ojos abiertos durante 5 segundos y luego los cerrara durante 5 segundos, repitiendo este ciclo aproximadamente 5 veces (cubriendose los odios con audifonos inalambricos sin cancelacion de audio).
 
 
 
