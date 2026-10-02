@@ -13,7 +13,9 @@ El filtro pasa banda de 0.8 a 48 Hz es esencial para este tipo de señales debid
 Es posible influir en la señal de EEG ya que las frecuencias están asociadas a distintos potenciales postsinápticos captados a frecuencias determinadas para el estado de relajación y el estado de pensamiento. Dentro de las acciones que se podría realizar para activar una determinada banda de frecuencia está el reposo y la somnolencia para activar las bandas alfa delta o theta y un estado de pensamiento activo y estrés para activar las bandas beta y gamma.
 
 **P4. Muestra una captura de pantalla de una porción relevante de los datos de EEG dentro del experimento propuesto. ¿Se corresponde esta señal con lo que esperabas? ¿Por qué?**
-![Imagen señal EOG cruda de prueba 4 en Open Signal](../../Resources/Lab6_foto_cuestionario_P4.jpg)
+<div align="center">
+  <img src="../../Resources/Lab6_foto_cuestionario_P4.jpg" width="300" alt="Imagen señal EOG cruda de prueba 4 en Open Signal">
+</div>
 Figura4: Imagen señal EOG cruda de prueba 4 en Open Signal.
 
 En esta imagen se observa la señal EEG de una persona en reposo, las señales esperadas serían las siguientes:
