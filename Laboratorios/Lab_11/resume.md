@@ -4,7 +4,7 @@
 
 Un monitor Holter, un reloj que avisa de una posible fibrilación auricular o un sistema que clasifica arritmias no leen el electrocardiograma como lo haría un cardiólogo frente al papel. Primero localizan cada latido, después lo resumen en un conjunto pequeño de números llamados características y, con ellos, un clasificador decide a qué grupo pertenece. Un latido de 600 ms registrado a 1000 Hz contiene 600 muestras muy redundantes, mientras que unas pocas medidas con significado, como la altura del pico R, el tiempo transcurrido desde el latido anterior o la posición de la onda T, bastan para describirlo. La pregunta que guía el laboratorio es si esas características permiten reconocer en qué condición fisiológica se registró cada latido.
 
-Para responderla se siguió el flujo del artículo de Subba y Chingtham, que describe cada latido con características morfológicas, estadísticas, espectrales y wavelet y compara cinco algoritmos de aprendizaje automático. El flujo se aplicó a doce registros de ECG de un mismo participante adquiridos con BITalino en cuatro condiciones, basal, hiperventilación, hipoventilación y después de un ejercicio aeróbico, y en las tres derivaciones de Einthoven. Primero se revisaron los datos: duración, paquetes perdidos, saturación, polaridad del QRS, intervalos RR anómalos y frecuencia cardiaca. Después, con la derivación DI, se filtró la señal, se detectaron los picos R con el algoritmo de Pan y Tompkins, se recortó cada latido, se calcularon 24 características agrupadas en cinco familias y se compararon cinco clasificadores con una validación por bloques de tiempo que evita la fuga de datos.
+Para responderla se siguió el flujo del artículo de Subba y Chingtham, que describe cada latido con características morfológicas, estadísticas, espectrales y wavelet y compara cinco algoritmos de aprendizaje automático. El flujo se aplicó a doce registros de ECG de un mismo participante adquiridos con BITalino en cuatro condiciones, basal, hiperventilación, hipoventilación y después de un ejercicio aeróbico, y en las tres derivaciones de Einthoven. Primero se revisaron los datos: duración, paquetes perdidos, saturación, polaridad del QRS, intervalos RR anómalos y frecuencia cardiaca. Después, con la derivación DI, se filtró la señal, se detectaron los picos R con el algoritmo de Pan y Tompkins, se recortó cada latido, se calcularon 24 características agrupadas en cinco familias y se compararon cinco clasificadores con una validación por bloques de tiempo que evita la fuga de datos. Al final se repitió la clasificación en DII y DIII para comparar las tres derivaciones.
 
 ## OBJETIVOS
 
@@ -241,32 +241,32 @@ En los modelos matemáticos de suma de gaussianas, como el modelo dinámico de M
 
 ### 11. Registros y montaje
 
-La tabla resume el montaje y los parámetros de adquisición de los doce registros.
+La tabla resume el montaje y los parámetros de adquisición de los doce registros del grupo.
 
 | Parámetro | Valor |
 |---|---|
-| Equipo | BITalino (r)evolution, canal analógico A2 |
-| Sensor | ECG; la cabecera de los archivos lo identifica como EGGBIT |
+| Equipo | BITalino (r)evolution, canal analógico A1 |
+| Sensor | ECG; la cabecera de los archivos lo identifica como ECGBIT |
 | Software | OpenSignals (r)evolution, exportación en archivo de texto |
 | Frecuencia de muestreo | 1000 Hz |
 | Resolución del conversor | 10 bits |
 | Ganancia del sensor | 1100 |
 | Electrodos | Ag/AgCl en la clavícula u hombro derecho, RA, la clavícula u hombro izquierdo, LA, y la cresta ilíaca izquierda, LL |
 | Registros | 12 archivos, 4 condiciones por 3 derivaciones, de un mismo participante |
-| Sesión | 11 de setiembre de 2026, entre las 11:53 y las 12:23 |
+| Sesión | Entre las 14:42 y las 15:45 |
 
 | Condición | Qué hizo el participante | Duración de los registros |
 |---|---|---|
-| Basal | Reposo con respiración normal | 30.4 a 31.9 s |
-| Hiperventilación | Ciclos repetidos de inhalar, mantener y exhalar | 30.8 a 31.1 s |
-| Hipoventilación | Retener la respiración el mayor tiempo posible | 31.8 a 42.9 s |
-| Aeróbica | Registro inmediatamente después de unos 3 minutos de ejercicio | 31.6 a 35.2 s |
+| Basal | Sentado, relajado y sin movimientos | 35.7 a 47.0 s |
+| Hiperventilación | Respiración profunda y rápida | 36.1 a 41.1 s |
+| Hipoventilación | Inspiración profunda y retención del aire | 34.5 a 39.9 s |
+| Aeróbica | Registro inmediatamente después de 5 minutos de burpees | 33.9 a 39.8 s |
 
-Las condiciones se registraron en el orden basal, hiperventilación, hipoventilación y aeróbica. Dentro de cada condición las tres derivaciones se grabaron una después de otra, con entre 1.3 y 2.4 minutos de diferencia, reubicando los cables del sensor sobre los tres puntos de medición.
+Las condiciones se registraron en el orden basal, hiperventilación, hipoventilación y aeróbica, en una sesión de unos 63 minutos. En cada condición las derivaciones se grabaron en el orden DI, DII y DIII, con entre 2.3 y 6.1 minutos de diferencia.
 
 ### 12. Procesamiento
 
-El procesamiento se realizó en Python sobre Google Colab con NumPy, pandas, SciPy, Matplotlib, PyWavelets y scikit-learn. La Figura 1 resume el flujo: en la Parte A se revisaron los doce registros para conocer su calidad y elegir una derivación, y en la Parte B se recorrió el camino del artículo base con esa derivación.
+El procesamiento se realizó en Python sobre Google Colab con NumPy, pandas, SciPy, Matplotlib, PyWavelets y scikit-learn. La Figura 1 resume el flujo: en la Parte A se revisaron los doce registros, y en la Parte B se recorrió el camino del artículo base con la derivación DI.
 
 <div align="center">
 
@@ -278,7 +278,7 @@ Figura 1. Flujo de procesamiento del laboratorio.
 
 #### Lectura y conversión a milivoltios
 
-El archivo de OpenSignals tiene una cabecera con los metadatos en formato JSON y las columnas nSeq, I1, I2, O1, O2 y A2. La función de lectura toma la frecuencia de muestreo, la resolución y el canal de la propia cabecera. Como el nombre del sensor, EGGBIT, no contiene la palabra ECG, el canal se tomó como el primer canal analógico registrado, A2. En la misma lectura se contaron los saltos de nSeq y las muestras saturadas.
+El archivo de OpenSignals tiene una cabecera con los metadatos en formato JSON y las columnas nSeq, I1, I2, O1, O2 y A1. La función de lectura toma la frecuencia de muestreo, la resolución y el canal de la propia cabecera; como el sensor figura como ECGBIT, el canal de ECG se identificó directamente como A1. La búsqueda de archivos reconoce como basal los nombres que contienen reposo y como aeróbica los que contienen ejercicio. En la misma lectura se contaron los saltos de nSeq y las muestras saturadas.
 
 ```python
 def leer_ecg(ruta):
@@ -307,7 +307,7 @@ def filtrar_ecg(x, fs=1000):
     return signal.filtfilt(b, a, y)                   # notch de 60 Hz con Q = 30
 ```
 
-La PSD se estimó con el método de Welch con segmentos de 4096 muestras, antes y después de filtrar. Para cuantificar la interferencia de la red se dividió la potencia en 60 Hz entre la mediana de la potencia de las frecuencias ubicadas entre 3 y 10 Hz a cada lado.
+La PSD se estimó con el método de Welch con segmentos de 4096 muestras, antes y después de filtrar.
 
 #### Detección de picos R y control de calidad
 
@@ -334,7 +334,7 @@ invertida = skew(y) < 0                  # QRS negativo: se invierte la señal
 ecg = -y if invertida else y
 ```
 
-Los doce archivos pasaron por este proceso y para cada uno se registraron los latidos detectados, los latidos válidos, el porcentaje de RR anómalos y el estado del semáforo. La FC media se calculó como 60 dividido entre el promedio de los RR no anómalos, y la FC al inicio y al final con los primeros y los últimos cinco RR no anómalos. Con esos resultados se eligió la derivación DI para la Parte B, en la que ninguna condición necesitó inversión.
+Los doce archivos pasaron por este proceso y para cada uno se registraron los latidos detectados, los latidos válidos, el porcentaje de RR anómalos y el estado del semáforo. La FC media se calculó como 60 dividido entre el promedio de los RR no anómalos, y la FC al inicio y al final con los primeros y los últimos cinco RR no anómalos. La Parte B se ejecutó con la derivación DI, que la regla automática invirtió en las cuatro condiciones.
 
 #### Segmentación
 
@@ -383,7 +383,7 @@ def caracteristicas_wavelet(lat, wavelet="db4", nivel=6):
     return {"wav_E_cA6": E[0], "wav_E_cD6": E[1], "wav_E_cD5": E[2], "wav_E_cD4": E[3]}
 ```
 
-Con todos los latidos válidos se construyó una tabla de 163 filas por 24 características, a la que se añadieron la clase, el archivo y el instante del pico R, y que se exportó como caracteristicas_ecg.csv. Para comparar las condiciones se calcularon los promedios por clase y diagramas de caja de ocho características estandarizadas.
+Con todos los latidos válidos se construyó una tabla de 158 filas por 24 características, a la que se añadieron la clase, el archivo y el instante del pico R, y que se exportó como caracteristicas_ecg.csv. Para comparar las condiciones se calcularon los promedios por clase y diagramas de caja de ocho características estandarizadas.
 
 #### Clasificación
 
@@ -398,19 +398,19 @@ MODELOS = {
 nuevo_modelo = lambda nombre: make_pipeline(StandardScaler(), MODELOS[nombre]())
 
 grupos = (tabla["archivo"] + "_b" + (tabla["t_R"] // 10).astype(int).astype(str)).to_numpy()   # bloques de 10 s
-cv = StratifiedGroupKFold(n_splits=3, shuffle=True, random_state=0)
+cv = StratifiedGroupKFold(n_splits=n_pliegues, shuffle=True, random_state=0)
 for nombre in MODELOS:
     s = cross_validate(nuevo_modelo(nombre), tabla[CARACTERISTICAS], tabla["clase"],
                        cv=cv, groups=grupos, scoring=["accuracy", "f1_macro"])
 ```
 
-Los latidos de cada archivo se agruparon en bloques de 10 s según el instante de su pico R. El número de pliegues se fijó en el número de bloques de la condición con menos bloques, que fue hiperventilación con 3. Para el modelo con mejor F1 se calculó la matriz de confusión con las predicciones de los tres pliegues, y la importancia de cada característica se obtuvo de un Random Forest entrenado con todos los latidos. Después se repitió la comparación con solo las tres características de ritmo y con solo las 21 restantes, que describen la forma del latido. Por último, para medir el efecto de la fuga de datos, el Random Forest con solo características de forma se evaluó también con StratifiedKFold de 3 pliegues, que mezcla los latidos al azar.
+Los latidos de cada archivo se agruparon en bloques de 10 s según el instante de su pico R, lo que dio 16 bloques. El número de pliegues se fijó en el número de bloques de la condición con menos bloques, que fue 4. Para el modelo con mejor F1 se calculó la matriz de confusión con las predicciones de los pliegues, y la importancia de cada característica se obtuvo de un Random Forest entrenado con todos los latidos. Después se repitió la comparación con solo las tres características de ritmo y con solo las 21 restantes, que describen la forma del latido, y se midió el efecto de la fuga de datos evaluando el Random Forest con solo forma mediante StratifiedKFold, que mezcla los latidos al azar. Por último, toda la Parte B se repitió en DII y DIII con la función experimento del cuaderno para comparar las tres derivaciones.
 
 ## RESULTADOS
 
 ### 1. Registros y calidad de la adquisición
 
-Los doce archivos tienen una frecuencia de muestreo de 1000 Hz y una resolución de 10 bits, y ninguno presentó paquetes perdidos.
+Los doce archivos tienen una frecuencia de muestreo de 1000 Hz y una resolución de 10 bits, y ninguno presentó paquetes perdidos ni muestras saturadas.
 
 <div align="center">
 
@@ -420,71 +420,61 @@ Figura 2. Seis segundos de cada registro filtrado. Las filas son las condiciones
 
 </div>
 
-En DI el QRS apunta hacia arriba en las cuatro condiciones, con un pico R alto y una onda S pequeña. En DII el complejo es bifásico, con un pico R de 0.2 a 0.36 mV seguido de una onda S algo más profunda, de −0.27 a −0.45 mV, y en DIII es predominantemente negativo, con deflexiones de −0.2 a −0.85 mV. Los latidos están más juntos en aeróbica y más separados en hipoventilación. En hipoventilación DI aparece una onda lenta de 1.25 mV cerca de 11.2 s y una deflexión negativa de −0.75 mV cerca de 13.6 s que no son latidos, y en hiperventilación DI una deflexión lenta de −0.8 mV al inicio de la ventana mostrada, cerca de 8 s.
+En DII y DIII el pico R domina sobre la onda S en basal, hiperventilación e hipoventilación: en DII el pico R llega a unos 0.85 a 1.0 mV y la onda S a −0.5 a −0.75 mV, y en DIII el pico R va de 0.4 a 0.75 mV con ondas S de −0.25 a −0.45 mV. En DI el complejo es bifásico, con un pico R de unos 0.3 a 0.47 mV y una onda S algo más profunda, de −0.4 a −0.55 mV, seguido de una onda T negativa. En aeróbica DII el pico R, de 0.9 a 1.25 mV, va acompañado de una onda S casi igual de profunda, de −0.75 a −1.3 mV. Los latidos están mucho más juntos en aeróbica que en las otras tres condiciones, que se ven muy parecidas entre sí.
 
-| Condición | Derivación | Duración, s | Saturadas | QRS original | Detectados | Válidos | RR anómalos | Estado |
-|---|---|---|---|---|---|---|---|---|
-| Basal | DI | 31.6 | 0 | Positivo | 37 | 35 | 0.0 % | Bueno |
-| Basal | DII | 30.4 | 0 | Negativo | 33 | 31 | 0.0 % | Bueno |
-| Basal | DIII | 31.9 | 0 | Negativo | 37 | 35 | 0.0 % | Bueno |
-| Hiperventilación | DI | 30.9 | 0 | Positivo | 38 | 36 | 0.0 % | Bueno |
-| Hiperventilación | DII | 31.1 | 0 | Negativo | 40 | 38 | 0.0 % | Bueno |
-| Hiperventilación | DIII | 30.8 | 0 | Negativo | 37 | 33 | 5.6 % | Revisar |
-| Hipoventilación | DI | 42.9 | 70 | Positivo | 50 | 33 | 24.5 % | Problemático |
-| Hipoventilación | DII | 31.8 | 0 | Negativo | 32 | 30 | 0.0 % | Bueno |
-| Hipoventilación | DIII | 33.9 | 0 | Negativo | 34 | 32 | 0.0 % | Bueno |
-| Aeróbica | DI | 35.2 | 0 | Positivo | 61 | 59 | 0.0 % | Bueno |
-| Aeróbica | DII | 31.6 | 0 | Negativo | 50 | 48 | 0.0 % | Bueno |
-| Aeróbica | DIII | 32.4 | 0 | Negativo | 49 | 47 | 0.0 % | Bueno |
+| Condición | Derivación | Duración, s | QRS original | Detectados | Válidos | RR anómalos | Estado |
+|---|---|---|---|---|---|---|---|
+| Basal | DI | 35.7 | Negativo | 34 | 32 | 0.0 % | Bueno |
+| Basal | DII | 40.4 | Positivo | 37 | 35 | 0.0 % | Bueno |
+| Basal | DIII | 47.0 | Positivo | 44 | 41 | 2.3 % | Revisar |
+| Hiperventilación | DI | 41.1 | Negativo | 38 | 36 | 0.0 % | Bueno |
+| Hiperventilación | DII | 36.1 | Positivo | 36 | 34 | 0.0 % | Bueno |
+| Hiperventilación | DIII | 37.6 | Positivo | 35 | 33 | 0.0 % | Bueno |
+| Hipoventilación | DI | 34.5 | Negativo | 32 | 30 | 0.0 % | Bueno |
+| Hipoventilación | DII | 35.4 | Positivo | 30 | 28 | 0.0 % | Bueno |
+| Hipoventilación | DIII | 39.9 | Positivo | 39 | 37 | 0.0 % | Bueno |
+| Aeróbica | DI | 35.5 | Negativo | 62 | 60 | 0.0 % | Bueno |
+| Aeróbica | DII | 39.8 | Negativo | 62 | 60 | 0.0 % | Bueno |
+| Aeróbica | DIII | 33.9 | Positivo | 53 | 51 | 0.0 % | Bueno |
 
-Diez archivos quedaron en buen estado. Las derivaciones DII y DIII se invirtieron en las cuatro condiciones, y DI en ninguna. Solo hipoventilación DI tuvo muestras saturadas: las 70 se concentran entre 35.36 y 35.43 s, en el techo del conversor de 1022 cuentas. En ese registro el conversor recorrió casi todo su rango, de 98 a 1022 cuentas, mientras que en los demás se mantuvo entre 189 y 880.
-
-<div align="center">
-
-<img src="../../Resources/Lab11_ECG_calidad_hipoventilacion.png" width="850" alt="Detalle de hipoventilación en DI">
-
-Figura 3. Detalle de hipoventilación en DI entre 7 y 15 s. Los triángulos marcan los picos detectados.
-
-</div>
-
-Los 12 RR anómalos de hipoventilación DI se agrupan en dos episodios, de 10.9 a 13.9 s y de 31.0 a 36.3 s. En el detalle se ve una onda ancha de 1.25 mV en 11.15 s y una deflexión negativa en 13.6 s, compatibles con artefactos de movimiento, que el detector contó como latidos. Esos falsos latidos producen intervalos de solo 252 y 347 ms, y en el segundo episodio el RR más corto fue de 90 ms. La saturación coincide con el artefacto de mayor amplitud del registro, en 35.4 s.
+Once archivos quedaron en buen estado y solo basal DIII quedó por revisar. La regla de polaridad invirtió DI en las cuatro condiciones y aeróbica DII.
 
 <div align="center">
 
-<img src="../../Resources/Lab11_ECG_calidad_hiperventilacion.png" width="850" alt="Detalle de hiperventilación en DIII">
+<img src="../../Resources/Lab11_ECG_calidad.png" width="850" alt="Detalle del inicio del registro basal en DIII">
 
-Figura 4. Detalle de hiperventilación en DIII entre 23 y 31 s.
+Figura 3. Detalle de los primeros 4 s del registro basal en DIII. Los triángulos marcan los picos detectados.
 
 </div>
 
-En hiperventilación DIII el problema es el contrario. Los dos RR anómalos, de 1.61 y 1.55 s entre 27.0 y 30.2 s, duran el doble de un RR normal porque los latidos de 27.8 y 29.4 s, con un pico R más bajo que el resto, no superaron el umbral y quedaron sin detectar.
+El único RR anómalo de basal DIII está al comienzo del registro. Durante el primer medio segundo la línea de base hace un transitorio grande, de −0.57 a 0.35 mV, y el detector marcó un falso latido en 0.22 s, lo que produjo un RR de 0.372 s. El resto del registro no presenta problemas.
 
 ### 2. Frecuencia cardiaca por condición y derivación
 
 | Condición | Derivación | Hora de inicio | FC media, lpm | FC al inicio, lpm | FC al final, lpm |
 |---|---|---|---|---|---|
-| Basal | DI | 11:55:32 | 69.9 | 71.3 | 70.3 |
-| Basal | DII | 11:53:20 | 65.6 | 64.1 | 65.4 |
-| Basal | DIII | 11:57:19 | 68.3 | 69.7 | 61.3 |
-| Hiperventilación | DI | 12:04:25 | 74.8 | 77.5 | 81.7 |
-| Hiperventilación | DII | 12:02:42 | 76.7 | 76.5 | 83.1 |
-| Hiperventilación | DIII | 12:00:20 | 76.7 | 83.3 | 81.1 |
-| Hipoventilación | DI | 12:07:50 | 61.8 | 76.4 | 56.4 |
-| Hipoventilación | DII | 12:09:49 | 60.5 | 65.7 | 57.2 |
-| Hipoventilación | DIII | 12:11:06 | 59.2 | 63.9 | 57.4 |
-| Aeróbica | DI | 12:20:17 | 103.0 | 109.8 | 104.3 |
-| Aeróbica | DII | 12:21:49 | 94.6 | 98.7 | 97.2 |
-| Aeróbica | DIII | 12:23:19 | 90.4 | 93.2 | 93.2 |
+| Basal | DI | 14:42:42 | 56.6 | 58.9 | 56.2 |
+| Basal | DII | 14:48:05 | 55.7 | 60.9 | 56.8 |
+| Basal | DIII | 14:50:55 | 54.6 | 59.7 | 52.7 |
+| Hiperventilación | DI | 15:01:07 | 55.8 | 50.8 | 59.2 |
+| Hiperventilación | DII | 15:07:15 | 60.3 | 62.5 | 54.3 |
+| Hiperventilación | DIII | 15:09:46 | 56.6 | 67.6 | 51.8 |
+| Hipoventilación | DI | 15:14:01 | 55.8 | 58.9 | 52.6 |
+| Hipoventilación | DII | 15:18:52 | 51.6 | 57.9 | 51.2 |
+| Hipoventilación | DIII | 15:24:18 | 58.5 | 54.7 | 58.9 |
+| Aeróbica | DI | 15:39:14 | 105.4 | 107.0 | 105.6 |
+| Aeróbica | DII | 15:42:58 | 94.4 | 101.9 | 92.0 |
+| Aeróbica | DIII | 15:45:13 | 92.7 | 95.1 | 90.9 |
 
 <div align="center">
 
 <img src="../../Resources/Lab11_ECG_frecuencia_cardiaca.png" width="900" alt="FC media por condición y tacograma en DI">
 
-Figura 5. FC media por condición y derivación, y tacograma de los cuatro registros de DI.
+Figura 4. FC media por condición y derivación, y tacograma de los cuatro registros de DI.
 
 </div>
 
-En las tres derivaciones la FC fue mayor en aeróbica, seguida de hiperventilación, basal e hipoventilación. En el tacograma de hipoventilación la FC sube de unos 65 a 90 lpm en los primeros 4 s, cae a unos 60 lpm hacia los 6 s y sigue bajando hasta unos 56 lpm al final; el hueco entre 31 y 37 s corresponde a los RR anómalos excluidos. En aeróbica la FC baja de unos 110 a 96 lpm en los primeros 30 s y repunta a unos 105 lpm en los últimos segundos. En hiperventilación oscila entre unos 65 y 84 lpm con una tendencia creciente, y en basal se mantiene entre unos 64 y 77 lpm. En aeróbica la FC media disminuyó de DI a DIII en el mismo orden en que se grabaron las derivaciones.
+Solo aeróbica se separa con claridad, con una FC media de 92.7 a 105.4 lpm. Basal, hiperventilación e hipoventilación quedan entre 51.6 y 60.3 lpm y su orden cambia de una derivación a otra. En aeróbica la FC media bajó de DI a DIII en el mismo orden en que se grabaron las derivaciones. En el tacograma de DI la FC de aeróbica baja de unos 108 a 101 lpm hasta los 30 s y luego repunta a unos 105 lpm; hiperventilación empieza cerca de 51 lpm y sube a unos 58 a 60 lpm; hipoventilación oscila entre unos 57 y 64 lpm y cae a unos 48 lpm hacia los 32 s, y basal oscila entre unos 52 y 68 lpm.
 
 ### 3. Filtrado
 
@@ -492,22 +482,11 @@ En las tres derivaciones la FC fue mayor en aeróbica, seguida de hiperventilaci
 
 <img src="../../Resources/Lab11_ECG_filtrado.png" width="900" alt="Señal cruda y filtrada en el tiempo y en la frecuencia">
 
-Figura 6. Registro basal en DI antes y después del filtrado, en el tiempo y en la frecuencia. La franja verde marca la banda de 0.5 a 40 Hz.
+Figura 5. Registro basal en DI, ya invertido, antes y después del filtrado, en el tiempo y en la frecuencia. La franja verde marca la banda de 0.5 a 40 Hz.
 
 </div>
 
-En el tiempo la señal filtrada queda centrada en cero y conserva la forma de P, QRS y T. El pico R filtrado es un poco más bajo que el crudo, con un promedio de 0.819 mV frente a 0.891 mV, porque el corte de 40 Hz elimina parte del contenido de alta frecuencia del QRS. En la frecuencia ambas curvas coinciden por debajo de unos 25 Hz; por encima de 40 Hz la potencia filtrada cae varios órdenes de magnitud y en 60 Hz aparece la muesca del notch.
-
-| Registro | Pico de 60 Hz frente a sus vecinas en la señal cruda |
-|---|---|
-| Aeróbica DII | 23.5 veces |
-| Basal DII | 8.9 veces |
-| Aeróbica DIII | 7.1 veces |
-| Hipoventilación DII | 5.1 veces |
-| Basal DI | 4.0 veces |
-| Resto de registros | Entre 0.9 y 3.3 veces |
-
-El pico de 60 Hz se distinguía en diez de los doce registros crudos y los valores más altos aparecieron en DII. Después del filtrado la relación quedó por debajo de 0.01 en los doce archivos, es decir, la interferencia desapareció.
+En el tiempo la señal filtrada se superpone con la cruda y solo elimina un rizado fino de alta frecuencia, sin cambiar la forma de P, QRS y T. En la frecuencia ambas curvas coinciden por debajo de unos 30 Hz; por encima de 40 Hz la potencia filtrada cae varios órdenes de magnitud y en 60 Hz aparece la muesca del notch. En la señal cruda de este registro no se distingue un pico marcado en 60 Hz.
 
 ### 4. Detección de picos R
 
@@ -515,53 +494,53 @@ El pico de 60 Hz se distinguía en diez de los doce registros crudos y los valor
 
 <img src="../../Resources/Lab11_ECG_PanTompkins.png" width="800" alt="Pasos del algoritmo de Pan y Tompkins">
 
-Figura 7. Pasos del algoritmo de Pan y Tompkins sobre el registro basal en DI entre 2 y 7 s.
+Figura 6. Pasos del algoritmo de Pan y Tompkins sobre el registro basal en DI entre 2 y 7 s.
 
 </div>
 
-Después del pasa-banda de 5 a 15 Hz las ondas P y T casi desaparecen y el QRS queda como una oscilación rápida. En la derivada el QRS alcanza en promedio 22.6 mV/s, mientras que en la zona de la onda T la pendiente máxima es de 3.7 mV/s, unas 6 veces menos. El cuadrado amplía esa diferencia a unas 37 veces, con picos de hasta unos 550 en el QRS. Tras la integración cada latido es una sola meseta de entre 125 y 155, muy por encima del umbral de 45.2.
+Después del pasa-banda de 5 a 15 Hz las ondas lentas se atenúan y el QRS queda como una oscilación rápida. En la derivada el QRS llega a unos ±20 mV/s, mientras que las demás ondas apenas alcanzan 3 a 4 mV/s. Con el cuadrado los picos del QRS llegan a unos 400 a 450 y el resto queda casi en cero, y tras la integración cada latido es una meseta de unos 90 a 103, muy por encima del umbral, de unos 33.
 
 <div align="center">
 
 <img src="../../Resources/Lab11_ECG_picos_R.png" width="850" alt="Picos R detectados en los cuatro registros de DI">
 
-Figura 8. Picos R detectados en los cuatro registros de DI.
+Figura 7. Picos R detectados en los cuatro registros de DI.
 
 </div>
 
-En basal, hiperventilación y aeróbica cada triángulo cae sobre un pico R, con 37, 38 y 61 detecciones, y la deflexión lenta de hiperventilación cerca de 8 s no se confundió con un latido. En hipoventilación hubo 50 detecciones: fuera de los dos episodios de artefacto las marcas caen sobre los picos R, pero dentro de ellos varias marcas caen sobre ondas que no son latidos.
+En los cuatro registros cada triángulo cae sobre un latido, con 34, 38, 32 y 62 detecciones, y ninguno tuvo RR anómalos. En basal un latido cerca de 6.5 s tiene un pico más bajo que el resto, de unos 0.33 mV, pero se detectó igual.
 
 ### 5. Segmentación y latido promedio
 
 | Condición | Latidos válidos en DI |
 |---|---|
-| Basal | 35 |
+| Basal | 32 |
 | Hiperventilación | 36 |
-| Hipoventilación | 33 |
-| Aeróbica | 59 |
-| Total | 163 |
+| Hipoventilación | 30 |
+| Aeróbica | 60 |
+| Total | 158 |
 
-La matriz de latidos tiene 163 filas por 600 muestras. Aeróbica aporta más latidos porque su FC es mayor, de modo que las clases no están balanceadas.
+La matriz de latidos tiene 158 filas por 600 muestras. Aeróbica aporta casi el doble de latidos porque su FC es casi el doble.
 
 <div align="center">
 
 <img src="../../Resources/Lab11_ECG_latidos.png" width="900" alt="Latidos superpuestos de cada condición">
 
-Figura 9. Latidos válidos de cada condición superpuestos y su promedio en negro.
+Figura 8. Latidos válidos de cada condición superpuestos y su promedio en negro.
 
 </div>
 
-Los latidos basales son casi idénticos entre sí. En hiperventilación un latido presenta una deflexión negativa de unos −0.85 mV entre 200 y 300 ms, y en hipoventilación algunos trazos se apartan del promedio antes del pico R, de modo que el control por RR no eliminó todos los efectos de los artefactos. En aeróbica los 59 latidos son muy parecidos y la onda T aparece antes.
+Como DI se invirtió, cada latido muestra una deflexión negativa profunda unos 25 ms antes del pico marcado como R, una meseta negativa y una onda T positiva. La deflexión negativa corresponde al pico R original invertido, y el pico marcado como R a la onda S original invertida. Hiperventilación e hipoventilación tienen latidos muy uniformes; en basal algunos trazos se apartan del promedio entre 50 y 150 ms, y en aeróbica los latidos son más variables.
 
 <div align="center">
 
 <img src="../../Resources/Lab11_ECG_latido_promedio.png" width="650" alt="Latido promedio de cada condición superpuesto">
 
-Figura 10. Latido promedio de cada condición.
+Figura 9. Latido promedio de cada condición.
 
 </div>
 
-Al superponer los promedios, aeróbica tiene el pico R más alto, cerca de 0.9 mV, y la onda S más profunda, cerca de −0.38 mV, mientras que hipoventilación tiene el pico R más bajo, cerca de 0.52 mV, y la onda S menos profunda. La onda T de aeróbica alcanza su máximo cerca de 185 ms después del pico R, frente a unos 240 ms en las otras tres condiciones.
+Los promedios de basal, hiperventilación e hipoventilación casi se superponen, con el pico marcado como R entre 0.41 y 0.48 mV y la onda T con su máximo cerca de 310 ms. Aeróbica se diferencia por una deflexión negativa inicial menos profunda, de unos −0.28 mV frente a −0.38 a −0.45 mV, y por una onda T más baja y más temprana, con su máximo cerca de 255 ms.
 
 ### 6. Características
 
@@ -569,258 +548,267 @@ Al superponer los promedios, aeróbica tiene el pico R más alto, cerca de 0.9 m
 
 <img src="../../Resources/Lab11_ECG_morfologia.png" width="700" alt="Medidas morfológicas sobre un latido basal">
 
-Figura 11. Medidas morfológicas sobre un latido basal. Las franjas marcan las ventanas de búsqueda de las ondas P y T.
+Figura 10. Medidas morfológicas sobre un latido basal. Las franjas marcan las ventanas de búsqueda de las ondas P y T.
 
 </div>
 
 | Característica del latido de ejemplo | Valor |
 |---|---|
-| RR previo | 922 ms |
-| RR siguiente | 844 ms |
-| FC instantánea | 65.1 lpm |
-| Amplitud P | 0.080 mV |
-| Amplitud Q | −0.134 mV |
-| Amplitud R | 0.856 mV |
-| Amplitud S | −0.279 mV |
-| Amplitud T | 0.141 mV |
-| Duración de Q a S | 53 ms |
-| Tiempo de R a T | 234 ms |
+| RR previo | 940 ms |
+| RR siguiente | 973 ms |
+| FC instantánea | 63.8 lpm |
+| Amplitud P | 0.041 mV |
+| Amplitud Q | −0.545 mV |
+| Amplitud R | 0.305 mV |
+| Amplitud S | −0.304 mV |
+| Amplitud T | 0.363 mV |
+| Duración de Q a S | 77 ms |
+| Tiempo de R a T | 302 ms |
 
-Los puntos Q, R, S y T quedaron sobre las ondas correspondientes. La duración de Q a S, 53 ms, es menor que el límite de 0.12 s para el QRS, aunque esta medida solo aproxima la duración del complejo porque no incluye su inicio ni su final.
+El latido de ejemplo es el de 6.5 s del registro basal, uno de los atípicos, con un pico R más bajo y una onda T más alta que el promedio. En él la onda Q medida, −0.545 mV, es más grande que el pico R, lo que confirma que en DI invertida las ventanas de búsqueda no coinciden con las ondas anatómicas.
 
 <div align="center">
 
 <img src="../../Resources/Lab11_ECG_espectro.png" width="700" alt="Espectro promedio del latido por condición">
 
-Figura 12. Espectro promedio del latido por condición, normalizado a su máximo. La franja amarilla marca la banda del QRS de 5 a 15 Hz.
+Figura 11. Espectro promedio del latido por condición, normalizado a su máximo. La franja amarilla marca la banda del QRS de 5 a 15 Hz.
 
 </div>
 
-En las cuatro condiciones el espectro tiene su máximo entre 4 y 5 Hz, presenta picos secundarios dentro de la banda de 5 a 15 Hz y casi no tiene potencia por encima de 35 Hz. Aeróbica tiene la mayor fracción de potencia en la banda del QRS, 0.484, frente a valores de 0.437 a 0.461 en las demás.
+En las cuatro condiciones el espectro tiene su máximo entre 2 y 3 Hz y casi no tiene potencia por encima de 30 Hz. Dentro de la banda del QRS aparecen picos secundarios cerca de 7 y 11 Hz, más altos en hipoventilación e hiperventilación. Aeróbica tiene la menor fracción de potencia en la banda del QRS, 0.398, frente a 0.477 a 0.507 en las demás.
 
 <div align="center">
 
 <img src="../../Resources/Lab11_ECG_wavelet.png" width="900" alt="Coeficientes wavelet de un latido">
 
-Figura 13. Latido basal de ejemplo y sus coeficientes de la DWT con db4 en los niveles cA6, cD6, cD5 y cD4.
+Figura 12. Latido basal de ejemplo y sus coeficientes de la DWT con db4 en los niveles cA6, cD6, cD5 y cD4.
 
 </div>
 
-Los niveles tienen 16, 16, 25 y 44 coeficientes, y en los tres niveles de detalle los coeficientes grandes se concentran en la posición del QRS. Las energías relativas del latido de ejemplo fueron 0.341 en cA6, 0.416 en cD6, 0.227 en cD5 y 0.015 en cD4, de modo que los niveles cD3 a cD1 suman apenas 0.1 % de la energía.
+Los niveles tienen 16, 16, 25 y 44 coeficientes. Los coeficientes grandes de cD6, cD5 y cD4 se concentran en la posición del QRS, y los de cA6 en la onda T. Las energías relativas del latido de ejemplo fueron 0.780 en cA6, 0.186 en cD6, 0.023 en cD5 y 0.011 en cD4; el predominio de cA6 se debe a su onda T alta.
 
 | Característica | Basal | Hiperventilación | Hipoventilación | Aeróbica |
 |---|---|---|---|---|
-| RR previo, ms | 858.0 | 805.1 | 963.3 | 582.7 |
-| RR siguiente, ms | 860.1 | 802.4 | 976.0 | 583.3 |
-| FC, lpm | 70.1 | 75.0 | 63.4 | 103.1 |
-| Amplitud P, mV | 0.080 | 0.080 | 0.071 | 0.054 |
-| Amplitud Q, mV | −0.124 | −0.101 | −0.082 | −0.133 |
-| Amplitud R, mV | 0.833 | 0.756 | 0.556 | 0.922 |
-| Amplitud S, mV | −0.264 | −0.259 | −0.154 | −0.359 |
-| Amplitud T, mV | 0.143 | 0.140 | 0.135 | 0.186 |
-| Duración de Q a S, ms | 53.1 | 53.2 | 55.1 | 54.0 |
-| Tiempo de R a T, ms | 238.0 | 233.8 | 242.5 | 187.0 |
-| Media, mV | 0.001 | 0.000 | −0.005 | −0.002 |
-| Mediana, mV | −0.019 | −0.014 | −0.015 | −0.031 |
-| Desviación estándar, mV | 0.154 | 0.148 | 0.108 | 0.169 |
-| Percentil 25, mV | −0.086 | −0.081 | −0.071 | −0.073 |
-| Percentil 75, mV | 0.040 | 0.043 | 0.028 | 0.021 |
-| Asimetría | 2.908 | 2.586 | 2.600 | 2.882 |
-| Curtosis | 11.681 | 10.317 | 10.004 | 12.125 |
-| Frecuencia dominante, Hz | 4.44 | 4.88 | 4.11 | 4.93 |
-| Potencia de 0.5 a 40 Hz | 3.833 | 3.500 | 1.806 | 5.032 |
-| Fracción de 5 a 15 Hz | 0.461 | 0.443 | 0.437 | 0.484 |
-| Energía cA6 | 0.338 | 0.364 | 0.410 | 0.290 |
-| Energía cD6 | 0.408 | 0.381 | 0.362 | 0.428 |
-| Energía cD5 | 0.238 | 0.241 | 0.215 | 0.266 |
-| Energía cD4 | 0.015 | 0.014 | 0.013 | 0.016 |
+| RR previo, ms | 1063.1 | 1077.0 | 1072.4 | 569.1 |
+| RR siguiente, ms | 1062.8 | 1072.7 | 1078.3 | 569.4 |
+| FC, lpm | 56.7 | 55.9 | 56.2 | 105.5 |
+| Amplitud P, mV | 0.018 | 0.012 | 0.008 | 0.024 |
+| Amplitud Q, mV | −0.482 | −0.437 | −0.396 | −0.321 |
+| Amplitud R, mV | 0.455 | 0.410 | 0.399 | 0.439 |
+| Amplitud S, mV | −0.107 | −0.080 | −0.083 | −0.134 |
+| Amplitud T, mV | 0.154 | 0.180 | 0.157 | 0.059 |
+| Duración de Q a S, ms | 94.8 | 95.1 | 91.3 | 87.9 |
+| Tiempo de R a T, ms | 310.5 | 313.3 | 317.2 | 268.6 |
+| Media, mV | 0.002 | 0.002 | 0.002 | 0.002 |
+| Mediana, mV | −0.019 | −0.023 | −0.023 | 0.009 |
+| Desviación estándar, mV | 0.143 | 0.129 | 0.119 | 0.117 |
+| Percentil 25, mV | −0.078 | −0.065 | −0.062 | −0.083 |
+| Percentil 75, mV | 0.081 | 0.077 | 0.065 | 0.058 |
+| Asimetría | 0.417 | 0.312 | 0.497 | 1.181 |
+| Curtosis | 2.483 | 1.975 | 2.350 | 3.996 |
+| Frecuencia dominante, Hz | 4.333 | 4.232 | 5.371 | 3.385 |
+| Potencia de 0.5 a 40 Hz | 2.604 | 1.916 | 1.689 | 2.345 |
+| Fracción de 5 a 15 Hz | 0.477 | 0.486 | 0.507 | 0.398 |
+| Energía cA6 | 0.552 | 0.531 | 0.531 | 0.569 |
+| Energía cD6 | 0.370 | 0.391 | 0.391 | 0.359 |
+| Energía cD5 | 0.055 | 0.056 | 0.057 | 0.054 |
+| Energía cD4 | 0.022 | 0.022 | 0.022 | 0.017 |
 
-Las diferencias más grandes están en el ritmo, con un RR de 583 ms en aeróbica frente a 963 ms en hipoventilación, y en algunas medidas de forma: el pico R de hipoventilación es 33 % más bajo que el basal, el tiempo de R a T se acorta unos 50 ms en aeróbica y la potencia del latido en hipoventilación es menos de la mitad de la basal. La duración de Q a S casi no cambia entre condiciones. La curtosis es alta en todas, entre 10 y 12, porque el pico R es estrecho y el resto del latido casi plano. La FC de esta tabla difiere un poco de la de la Sección 2 porque aquí se promedia la FC de cada latido válido, mientras que allí se divide 60 entre el RR medio de todos los RR no anómalos.
+La diferencia más grande está en el ritmo: el RR de aeróbica, 569 ms, es casi la mitad del de las otras tres condiciones, que tienen RR casi iguales, entre 1063 y 1077 ms. En aeróbica también cambian varias medidas de forma: el tiempo de R a T se acorta unos 45 ms, la onda T es menos de la mitad de alta y la asimetría y la curtosis aumentan. Entre basal, hiperventilación e hipoventilación las diferencias son pequeñas; la mayor está en las amplitudes de Q y R, algo mayores en basal, y en la potencia del latido.
 
 <div align="center">
 
 <img src="../../Resources/Lab11_ECG_boxplots.png" width="900" alt="Diagramas de caja de ocho características estandarizadas">
 
-Figura 14. Distribución por condición de ocho características estandarizadas con z-score.
+Figura 13. Distribución por condición de ocho características estandarizadas con z-score.
 
 </div>
 
-La FC separa con claridad aeróbica, con valores altos, e hipoventilación, con valores bajos, del resto. La amplitud del pico R separa hipoventilación, cuya caja queda por debajo de todas las demás, y ubica aeróbica por encima de basal. El tiempo de R a T separa aeróbica, mientras que las otras tres condiciones se superponen. En la duración de Q a S, la curtosis, la fracción de 5 a 15 Hz y la energía de cD6 las cajas se superponen casi por completo, salvo aeróbica, que tiende a valores mayores. En casi todas las características la caja de hiperventilación es la más ancha y se superpone con la de basal.
+La FC, la amplitud de la onda T, el tiempo de R a T y la fracción de 5 a 15 Hz separan aeróbica del resto, pero en ninguna de ellas se distinguen basal, hiperventilación e hipoventilación, cuyas cajas de FC se superponen por completo. La amplitud del pico R es la única que ubica basal por encima de hiperventilación e hipoventilación, aunque con superposición. En la duración de Q a S, la curtosis y la energía de cD6 las cuatro cajas se superponen ampliamente.
 
 ### 7. Clasificación
 
-La tabla tenía 163 latidos agrupados en 16 bloques de 10 s y se validó con 3 pliegues; con cuatro clases el azar corresponde a 0.25.
+La tabla tenía 158 latidos agrupados en 16 bloques de 10 s y se validó con 4 pliegues; con cuatro clases el azar corresponde a 0.25.
 
 | Modelo | Exactitud | F1 macro |
 |---|---|---|
-| Árbol de decisión | 0.824 ± 0.114 | 0.673 ± 0.032 |
-| Regresión logística | 0.898 ± 0.074 | 0.811 ± 0.150 |
-| Random Forest | 0.910 ± 0.108 | 0.827 ± 0.123 |
-| KNN con k = 5 | 0.856 ± 0.146 | 0.770 ± 0.163 |
-| SVM con kernel RBF | 0.897 ± 0.084 | 0.873 ± 0.099 |
+| Árbol de decisión | 0.636 ± 0.095 | 0.479 ± 0.075 |
+| Regresión logística | 0.759 ± 0.131 | 0.596 ± 0.152 |
+| Random Forest | 0.665 ± 0.152 | 0.454 ± 0.093 |
+| KNN con k = 5 | 0.626 ± 0.120 | 0.442 ± 0.080 |
+| SVM con kernel RBF | 0.535 ± 0.083 | 0.329 ± 0.108 |
 
 <div align="center">
 
 <img src="../../Resources/Lab11_ECG_clasificadores.png" width="700" alt="Exactitud y F1 macro de los cinco clasificadores">
 
-Figura 15. Exactitud y F1 macro de los cinco clasificadores con las 24 características. Las barras negras indican la desviación entre pliegues y la línea punteada el azar.
+Figura 14. Exactitud y F1 macro de los cinco clasificadores en DI con las 24 características. Las barras negras indican la desviación entre pliegues y la línea punteada el azar.
 
 </div>
 
-Los cinco modelos quedaron muy por encima del azar. Random Forest obtuvo la mayor exactitud y la SVM el mayor F1 macro, pero las diferencias entre ambos, de 0.013 en exactitud y 0.046 en F1, son menores que la variación entre pliegues, que va de 0.08 a 0.12. El árbol de decisión fue el modelo más débil en F1. En todos los modelos el F1 macro quedó por debajo de la exactitud, porque la exactitud da más peso a aeróbica, la clase con más latidos y una de las mejor reconocidas, mientras que el F1 macro da el mismo peso a hiperventilación, la más difícil.
+La regresión logística obtuvo la mayor exactitud y el mayor F1 macro, 0.759 y 0.596. Los demás modelos quedaron entre 0.33 y 0.48 de F1, y la SVM apenas superó el azar. En todos los modelos el F1 macro quedó muy por debajo de la exactitud, porque aeróbica, la clase con más latidos, se reconoce bien y eleva la exactitud, mientras que las otras tres se confunden entre sí.
 
 <div align="center">
 
-<img src="../../Resources/Lab11_ECG_confusion.png" width="900" alt="Matriz de confusión de la SVM e importancia de características del Random Forest">
+<img src="../../Resources/Lab11_ECG_confusion.png" width="900" alt="Matriz de confusión de la regresión logística e importancia de características del Random Forest">
 
-Figura 16. Matriz de confusión de la SVM con las predicciones de los tres pliegues e importancia de las 12 características más usadas por el Random Forest.
+Figura 15. Matriz de confusión de la regresión logística con las predicciones de los pliegues e importancia de las 12 características más usadas por el Random Forest.
 
 </div>
 
 | Condición real | Predicha basal | Predicha hiperventilación | Predicha hipoventilación | Predicha aeróbica | Sensibilidad |
 |---|---|---|---|---|---|
-| Basal | 34 | 1 | 0 | 0 | 97.1 % |
-| Hiperventilación | 4 | 27 | 5 | 0 | 75.0 % |
-| Hipoventilación | 2 | 3 | 28 | 0 | 84.8 % |
-| Aeróbica | 0 | 3 | 1 | 55 | 93.2 % |
+| Basal | 23 | 8 | 1 | 0 | 71.9 % |
+| Hiperventilación | 7 | 18 | 11 | 0 | 50.0 % |
+| Hipoventilación | 0 | 11 | 19 | 0 | 63.3 % |
+| Aeróbica | 0 | 0 | 0 | 60 | 100.0 % |
 
-La SVM clasificó bien 144 de los 163 latidos. Hiperventilación fue la condición con más errores, confundida con basal y con hipoventilación, y ningún latido de otra condición fue clasificado como aeróbica. En el Random Forest las características más importantes fueron el RR siguiente, la FC y el RR previo, seguidas del tiempo de R a T, la potencia de 0.5 a 40 Hz y las amplitudes de R, S y Q.
+La regresión logística clasificó bien 120 de los 158 latidos. Aeróbica se reconoció sin errores y ningún latido de otra condición se clasificó como aeróbica, mientras que los errores se concentran entre basal, hiperventilación e hipoventilación, sobre todo entre estas dos últimas. En el Random Forest la característica más importante fue la amplitud de Q, seguida del RR previo, la FC, el RR siguiente, la potencia de 0.5 a 40 Hz, la asimetría y el tiempo de R a T.
 
 | Modelo | F1 con todas | F1 solo ritmo | F1 solo forma |
 |---|---|---|---|
-| Árbol de decisión | 0.673 | 0.718 | 0.564 |
-| Regresión logística | 0.811 | 0.562 | 0.702 |
-| Random Forest | 0.827 | 0.725 | 0.772 |
-| KNN con k = 5 | 0.770 | 0.632 | 0.723 |
-| SVM con kernel RBF | 0.873 | 0.711 | 0.805 |
+| Árbol de decisión | 0.479 | 0.283 | 0.382 |
+| Regresión logística | 0.596 | 0.220 | 0.540 |
+| Random Forest | 0.454 | 0.291 | 0.460 |
+| KNN con k = 5 | 0.442 | 0.301 | 0.414 |
+| SVM con kernel RBF | 0.329 | 0.265 | 0.323 |
 
 <div align="center">
 
 <img src="../../Resources/Lab11_ECG_ritmo_forma.png" width="700" alt="F1 macro con todas las características, solo ritmo y solo forma">
 
-Figura 17. F1 macro con las 24 características, solo con las tres de ritmo y solo con las 21 de forma.
+Figura 16. F1 macro con las 24 características, solo con las tres de ritmo y solo con las 21 de forma.
 
 </div>
 
-Sin las características de ritmo el F1 bajó entre 0.05 y 0.11, pero se mantuvo muy por encima del azar, y en cuatro de los cinco modelos la forma sola superó al ritmo solo. La excepción fue el árbol de decisión, que obtuvo con solo el ritmo un F1 mayor que con todas las características. En la prueba de fuga de datos, el Random Forest con solo características de forma alcanzó un F1 de 0.951 al mezclar los latidos al azar y de 0.772 con la validación por bloques, una diferencia de 0.18.
+Con solo las características de ritmo el F1 quedó entre 0.22 y 0.30, prácticamente en el azar, porque el ritmo solo separa aeróbica. Con solo las de forma el F1 se mantuvo cerca del obtenido con todas, entre 0.32 y 0.54. En la prueba de fuga de datos, el Random Forest con solo características de forma alcanzó un F1 de 0.857 al mezclar los latidos al azar y de 0.460 con la validación por bloques, una diferencia de 0.40.
+
+| Modelo | F1 en DI | F1 en DII | F1 en DIII |
+|---|---|---|---|
+| Árbol de decisión | 0.479 | 0.647 | 0.667 |
+| Regresión logística | 0.596 | 0.721 | 0.813 |
+| Random Forest | 0.454 | 0.778 | 0.771 |
+| KNN con k = 5 | 0.442 | 0.721 | 0.725 |
+| SVM con kernel RBF | 0.329 | 0.703 | 0.685 |
+
+Al repetir la Parte B en las otras derivaciones, con 157 latidos válidos en DII y 162 en DIII, todos los modelos mejoraron. El mejor F1 fue de 0.813 en DIII con regresión logística y de 0.778 en DII con Random Forest, frente a 0.596 en DI. La diferencia entre DII y DIII es menor que la variación entre pliegues, de 0.09 a 0.18, mientras que DI quedó claramente por debajo de ambas.
 
 ### 8. Síntesis de resultados
 
 | Aspecto | Resultado |
 |---|---|
-| Registros | 12 archivos de 30.4 a 42.9 s, a 1000 Hz y 10 bits, sin paquetes perdidos |
-| Calidad | 10 archivos buenos, hiperventilación DIII por revisar e hipoventilación DI problemática |
-| Polaridad | QRS positivo en DI; DII y DIII invertidas en las cuatro condiciones |
-| FC media en DI | Aeróbica 103.0, hiperventilación 74.8, basal 69.9 e hipoventilación 61.8 lpm |
-| Interferencia de 60 Hz | Hasta 23.5 veces sus vecinas en la señal cruda; eliminada tras el filtrado |
-| Latidos válidos en DI | 163: 35 basales, 36 de hiperventilación, 33 de hipoventilación y 59 de aeróbica |
-| Cambios de forma | Pico R más bajo en hipoventilación, 0.556 mV, y onda T más temprana en aeróbica, 187 ms |
-| Mejor clasificador | SVM con F1 macro de 0.873 ± 0.099 |
-| Solo características de forma | F1 macro de 0.805 con SVM |
-| Fuga de datos | Random Forest con solo forma: 0.951 al mezclar al azar frente a 0.772 por bloques |
+| Registros | 12 archivos de 33.9 a 47.0 s, a 1000 Hz y 10 bits, sin paquetes perdidos ni saturación |
+| Calidad | 11 archivos buenos y basal DIII por revisar, con un falso latido al inicio |
+| Polaridad | DI invertida en las cuatro condiciones y aeróbica DII invertida |
+| FC media | Aeróbica de 92.7 a 105.4 lpm; basal, hiperventilación e hipoventilación entre 51.6 y 60.3 lpm |
+| Latidos válidos en DI | 158: 32 basales, 36 de hiperventilación, 30 de hipoventilación y 60 de aeróbica |
+| Cambios de forma | En aeróbica, onda T más baja, 0.059 mV, y más temprana, 268.6 ms |
+| Mejor clasificador en DI | Regresión logística con F1 macro de 0.596 ± 0.152 |
+| Fuga de datos | Random Forest con solo forma: 0.857 al mezclar al azar frente a 0.460 por bloques |
+| Comparación de derivaciones | Mejor F1 de 0.596 en DI, 0.778 en DII y 0.813 en DIII |
 
 ## PREGUNTAS
 
 ### P1. ¿Cuántos archivos tienes y cuánto dura cada uno? ¿Alguno dura menos de 30 s?
 
-Hay 12 archivos, uno por cada combinación de las cuatro condiciones y las tres derivaciones. Duran entre 30.4 s, el registro basal en DII, y 42.9 s, el de hipoventilación en DI. Ninguno dura menos de 30 s, aunque el registro basal en DII apenas supera ese límite. Los registros de hipoventilación son los de duración más variable, de 31.8 a 42.9 s.
+Hay 12 archivos, uno por cada combinación de las cuatro condiciones y las tres derivaciones. Duran entre 33.9 s, aeróbica en DIII, y 47.0 s, basal en DIII. Ninguno dura menos de 30 s.
 
 ### P2. ¿Hay paquetes perdidos o muestras saturadas? ¿En qué archivos?
 
-No hubo paquetes perdidos: en los doce archivos el contador nSeq avanzó siempre de uno en uno. Solo hipoventilación en DI tuvo muestras saturadas, 70 en total, todas entre 35.36 y 35.43 s y en el techo del conversor de 1022 cuentas, durante un artefacto de gran amplitud. Es también el único registro en que el conversor recorrió casi todo su rango, de 98 a 1022 cuentas; en los demás se mantuvo entre 189 y 880.
+No. En los doce archivos el contador nSeq avanzó siempre de uno en uno y ninguna muestra llegó a los límites del conversor, así que no hubo paquetes perdidos ni saturación.
 
 ### P3. Según la hora de inicio, ¿en qué orden se grabaron las derivaciones de cada condición?
 
-| Condición | Primera | Segunda | Tercera |
+| Condición | DI | DII | DIII |
 |---|---|---|---|
-| Basal | DII, 11:53:20 | DI, 11:55:32 | DIII, 11:57:19 |
-| Hiperventilación | DIII, 12:00:20 | DII, 12:02:42 | DI, 12:04:25 |
-| Hipoventilación | DI, 12:07:50 | DII, 12:09:49 | DIII, 12:11:06 |
-| Aeróbica | DI, 12:20:17 | DII, 12:21:49 | DIII, 12:23:19 |
+| Basal | 14:42:42 | 14:48:05 | 14:50:55 |
+| Hiperventilación | 15:01:07 | 15:07:15 | 15:09:46 |
+| Hipoventilación | 15:14:01 | 15:18:52 | 15:24:18 |
+| Aeróbica | 15:39:14 | 15:42:58 | 15:45:13 |
 
-Las condiciones se grabaron en una sesión de unos 30 minutos, en el orden basal, hiperventilación, hipoventilación y aeróbica. Las derivaciones de una misma condición no se registraron al mismo tiempo sino una tras otra, con entre 1.3 y 2.4 minutos de diferencia, y el orden no fue el mismo en todas las condiciones. Entre el último registro de hipoventilación y el primero de aeróbica pasaron unos 9 minutos, intervalo en el que se realizó el ejercicio.
+En todas las condiciones el orden fue DI, DII y DIII, con entre 2.3 y 6.1 minutos entre una derivación y la siguiente. Las condiciones se grabaron en el orden basal, hiperventilación, hipoventilación y aeróbica, en una sesión de unos 63 minutos, y entre el último registro de hipoventilación y el primero de aeróbica pasaron unos 14 minutos, en los que se realizó el ejercicio.
 
 ### P4. ¿En qué derivación el QRS es claramente positivo? ¿En cuál es negativo o bifásico?
 
-En DI el QRS es claramente positivo en las cuatro condiciones, con un pico R de 0.5 a 1 mV y una onda S pequeña. En DII es bifásico: un pico R de 0.2 a 0.36 mV seguido de una onda S algo más profunda, de −0.27 a −0.45 mV. En DIII es predominantemente negativo, con deflexiones de −0.2 a −0.85 mV. Con un eje eléctrico normal se esperaría un QRS positivo también en DII. El patrón observado, positivo en DI y negativo en DIII, puede deberse a un eje desviado a la izquierda, a la ubicación de los electrodos sobre el tronco o a la conexión de los cables, y con estos datos no se puede distinguir entre esas causas.
+En DII y DIII el QRS es positivo: el pico R domina sobre la onda S, con 0.85 a 1.0 mV en DII y 0.4 a 0.75 mV en DIII en las condiciones de reposo. La excepción es aeróbica en DII, donde la onda S, de hasta −1.3 mV, es casi tan profunda como el pico R. En DI el QRS es bifásico, con un pico R de 0.3 a 0.47 mV y una onda S algo más profunda, de −0.4 a −0.55 mV, y la onda T es negativa. Que DII sea la derivación más positiva coincide con un eje eléctrico normal; el QRS bifásico y la onda T negativa en DI pueden deberse a la posición de los electrodos sobre el tronco o a su conexión, y con estos datos no se puede distinguir la causa.
 
 ### P5. ¿En qué condición se ven los latidos más juntos? ¿Detectas algún artefacto a simple vista?
 
-Los latidos están más juntos en aeróbica, con un RR medio de 583 ms, frente a 858 ms en basal, 805 ms en hiperventilación y 963 ms en hipoventilación. A simple vista hay artefactos en hipoventilación DI, con una onda lenta de 1.25 mV cerca de 11.2 s y una deflexión negativa de −0.75 mV cerca de 13.6 s, y en hiperventilación DI, con una deflexión lenta de −0.8 mV cerca de 8 s. Ninguna de esas ondas tiene la forma de un latido.
+En aeróbica, con un RR medio de 569 ms, frente a unos 1063 a 1077 ms en las otras tres condiciones; en 6 s se ven unos 10 latidos en aeróbica y 5 o 6 en las demás. En la ventana mostrada no hay artefactos grandes; solo se aprecia un rizado de alta frecuencia en algunos tramos, por ejemplo en hipoventilación DIII. El artefacto más claro del conjunto está al inicio de basal DIII, fuera de esa ventana.
 
 ### P6. ¿Qué archivos quedaron marcados como problemáticos o por revisar? Mirando el zoom, ¿qué tipo de problema tienen?
 
-Hipoventilación DI quedó como problemático por sus 70 muestras saturadas y su 24.5 % de RR anómalos. Su problema son los artefactos de movimiento: ondas lentas y grandes que no son latidos, concentradas entre 10.9 y 13.9 s y entre 31.0 y 36.3 s, que el detector contó como latidos y que generaron RR tan cortos como 90 ms; el artefacto más grande, en 35.4 s, además saturó el conversor. Hiperventilación DIII quedó por revisar con 5.6 % de RR anómalos y sin saturación. Su problema son dos latidos no detectados, en 27.8 y 29.4 s, cuyo pico R era más bajo que el de los demás latidos; por eso aparecen dos RR de 1.61 y 1.55 s, el doble de lo normal.
+Ningún archivo quedó como problemático, y solo basal DIII quedó por revisar, con 2.3 % de RR anómalos, es decir, uno de 43 intervalos. En el zoom se ve un transitorio grande de la línea de base en el primer medio segundo del registro, un artefacto al inicio de la grabación, sobre el que el detector marcó un falso latido en 0.22 s. Ese falso positivo produjo un RR de 0.372 s; no hay saturación ni latidos sin detectar, y el resto del registro es limpio.
 
 ### P7. ¿Qué derivaciones se invirtieron? ¿Coincide con lo observado en P4?
 
-Se invirtieron DII y DIII en las cuatro condiciones, ocho registros en total, y DI en ninguna. Coincide con P4: DI tiene el QRS positivo, DIII negativo y DII bifásico, con una onda S más profunda que el pico R, por lo que su asimetría resultó negativa y la regla la invirtió. Después de invertir DII, el máximo que se mide como pico R corresponde en realidad a la onda S invertida, de modo que en esa derivación las amplitudes pierden su nombre anatómico.
+Se invirtió DI en las cuatro condiciones y DII solo en aeróbica, cinco registros en total. Coincide con P4: en DI la onda S es más profunda que el pico R, y en aeróbica DII la onda S es casi tan profunda como el pico R, así que en ambos casos la asimetría resultó negativa. Después de invertir DI, el máximo que se mide como pico R es la onda S original invertida, la deflexión que se mide como Q es el pico R original y la onda T medida es la onda T negativa original, de modo que en DI las amplitudes pierden su nombre anatómico.
 
 ### P8. Ordena las condiciones de mayor a menor FC. ¿Es lo que esperabas fisiológicamente?
 
-El orden fue aeróbica, de 90.4 a 103.0 lpm, hiperventilación, de 74.8 a 76.7 lpm, basal, de 65.6 a 69.9 lpm, e hipoventilación, de 59.2 a 61.8 lpm, y se repitió en las tres derivaciones. Es lo esperado. El ejercicio eleva la FC por la demanda metabólica y la activación simpática, y el registro se tomó durante la recuperación; en DI incluso superó los 100 lpm, una taquicardia sinusal fisiológica. Las respiraciones profundas y repetidas de la hiperventilación aumentan la FC respecto de la basal, y la retención de la respiración la reduce por activación del nervio vago, hasta valores cercanos al límite de 60 lpm.
+Aeróbica es claramente la mayor, de 92.7 a 105.4 lpm. Las otras tres quedan casi iguales y su orden cambia con la derivación: en DI basal tiene 56.6 lpm e hiperventilación e hipoventilación 55.8; en DII el orden es hiperventilación, 60.3, basal, 55.7, e hipoventilación, 51.6; y en DIII es hipoventilación, 58.5, hiperventilación, 56.6, y basal, 54.6. Lo de aeróbica es lo esperado, por la demanda metabólica y la activación simpática después de los burpees. En cambio, se esperaba que la hiperventilación aumentara la FC y que la retención de la respiración la redujera, y las diferencias entre esas tres condiciones, de pocos lpm, son menores que la variación entre derivaciones, así que con estos registros no se observa un efecto claro de las maniobras respiratorias sobre la FC media.
 
 ### P9. En el tacograma, ¿en qué condición la FC cambia durante el registro? ¿Cómo lo explicas?
 
-El cambio más marcado ocurre en hipoventilación. La FC sube de unos 65 a 90 lpm en los primeros 4 s y luego cae a unos 60 lpm y sigue bajando hasta unos 56 lpm al final; en DI pasó de 76.4 lpm al inicio a 56.4 lpm al final, y en DII y DIII también bajó, de 65.7 a 57.2 y de 63.9 a 57.4 lpm. La subida inicial es compatible con la inspiración profunda previa a la retención, porque la inspiración acelera el corazón, y la caída posterior con la bradicardia de la apnea mediada por el nervio vago. Aeróbica también cambia: la FC baja de unos 110 a 96 lpm en 30 s por la recuperación después del ejercicio. En hiperventilación la FC oscila entre unos 65 y 84 lpm con cada ciclo respiratorio, una arritmia sinusal respiratoria amplificada, y tiende a subir, de 77.5 a 81.7 lpm en DI. La basal es la más estable.
+En el tacograma de DI cambian sobre todo hiperventilación e hipoventilación. En hiperventilación la FC empieza cerca de 51 lpm y sube a unos 58 a 60 lpm, de 50.8 a 59.2 lpm entre el inicio y el final, lo que es compatible con el efecto acelerador de las respiraciones profundas. En hipoventilación oscila entre 57 y 64 lpm y cae a unos 48 lpm hacia los 32 s, de 58.9 a 52.6 lpm, lo que es compatible con la bradicardia de la apnea. En aeróbica baja de unos 108 a 101 lpm hasta los 30 s, por la recuperación después del ejercicio, y repunta al final, y en basal oscila entre 52 y 68 lpm por la arritmia sinusal respiratoria. Estas tendencias no se repiten en todas las derivaciones: en DII y DIII la FC de hiperventilación empezó más alta y bajó, de 62.5 a 54.3 y de 67.6 a 51.8 lpm.
 
 ### P10. En la condición aeróbica, ¿la FC es igual en las tres derivaciones? Según la hora, ¿por qué crees que pasa esto?
 
-No. Fue de 103.0 lpm en DI, 94.6 lpm en DII y 90.4 lpm en DIII, y las derivaciones se grabaron justamente en ese orden, a las 12:20:17, 12:21:49 y 12:23:19. Durante esos tres minutos el participante se estaba recuperando del ejercicio, así que su FC seguía bajando; dentro de DI también bajó de 109.8 a 104.3 lpm. La diferencia no se debe a la derivación, porque la FC es la misma para todo el corazón, sino al momento en que se grabó cada una.
+No. Fue de 105.4 lpm en DI, 94.4 lpm en DII y 92.7 lpm en DIII, y las derivaciones se grabaron en ese orden, a las 15:39:14, 15:42:58 y 15:45:13. Durante esos seis minutos el participante se estaba recuperando del ejercicio, así que su FC seguía bajando; dentro de cada registro también bajó, de 107.0 a 105.6 lpm en DI, de 101.9 a 92.0 lpm en DII y de 95.1 a 90.9 lpm en DIII. La diferencia no se debe a la derivación, porque la FC es la misma para todo el corazón, sino al momento en que se grabó cada una.
 
 ### P11. ¿Qué derivación eliges para la Parte B y por qué?
 
-Se eligió DI. Tiene las cuatro condiciones, es la única con QRS positivo en todas ellas, por lo que no necesita inversión y las amplitudes de P, Q, R, S y T conservan su nombre anatómico, y su pico R es alto y estrecho, de 0.56 a 0.92 mV en promedio, lo que facilita la detección. Su punto débil es hipoventilación DI, el único registro problemático, pero el control por RR excluye los latidos cercanos a los artefactos y quedaron 33 latidos válidos. DII tenía sus cuatro registros en buen estado, pero su QRS bifásico obligó a invertirla en todas las condiciones, y DIII tenía un archivo por revisar y el QRS negativo. Se trabaja con una sola derivación porque cada una produce latidos de forma distinta y, al mezclarlas, el clasificador aprendería a reconocer la derivación en lugar de la condición.
+Según los criterios, la mejor opción es DII, como eligió el grupo, o DIII. Ambas tienen las cuatro condiciones y el QRS positivo; DII tiene todos sus archivos en buen estado, aunque la regla invierte aeróbica, y DIII no necesita ninguna inversión, aunque tiene un archivo por revisar con un solo RR anómalo. DI es la peor opción porque se invierte en las cuatro condiciones y sus amplitudes pierden el nombre anatómico. La comparación de derivaciones lo confirma: el mejor F1 fue de 0.778 en DII y 0.813 en DIII, frente a 0.596 en DI. En el cuaderno la Parte B quedó ejecutada con DI, así que las respuestas de P12 a P21 corresponden a esa derivación.
 
 ### P12. ¿Cada triángulo cae sobre un pico R? ¿Ves latidos sin marcar, que serían falsos negativos, o marcas sobre ruido, que serían falsos positivos?
 
-En basal, hiperventilación y aeróbica sí: cada triángulo cae sobre un pico R, no se ven latidos sin marcar y ninguno de los tres registros tuvo RR anómalos. Incluso la deflexión lenta de hiperventilación cerca de 8 s se ignoró correctamente. En hipoventilación hay falsos positivos: dentro de los episodios de artefacto, entre 10.9 y 13.9 s y entre 31.0 y 36.3 s, el detector marcó ondas que no son latidos, lo que explica las 50 detecciones y los 12 RR anómalos. Fuera de esos episodios las marcas caen sobre los picos R. Los falsos negativos aparecieron en hiperventilación DIII, fuera de la derivación elegida.
+Sí. En los cuatro registros de DI cada triángulo cae sobre un latido, con 34, 38, 32 y 62 detecciones, no se ven latidos sin marcar ni marcas sobre ruido, y ninguno tuvo RR anómalos. El latido de basal cerca de 6.5 s, con un pico más bajo que el resto, también se detectó. El único falso positivo del conjunto apareció en basal DIII, fuera de la derivación usada.
 
 ### P13. ¿Por qué la derivada ayuda a distinguir el QRS de la onda T, aunque la onda T también sea grande?
 
-Porque la derivada mide qué tan rápido cambia la señal, no qué tan alta es. El QRS sube y baja en unas pocas decenas de milisegundos, mientras que la onda T lo hace en unos 150 a 200 ms. En el registro basal en DI, después del pasa-banda de 5 a 15 Hz, la derivada alcanzó en promedio 22.6 mV/s en el QRS y solo 3.7 mV/s en la zona de la onda T, unas 6 veces menos, y al elevar al cuadrado la diferencia pasó a unas 37 veces. Además, el pasa-banda ya había atenuado buena parte de la onda T por su contenido de baja frecuencia, así que una onda T grande pero lenta queda muy por debajo del umbral.
+Porque la derivada mide qué tan rápido cambia la señal, no qué tan alta es. El QRS sube y baja en unas pocas decenas de milisegundos, mientras que la onda T lo hace en unos 150 a 200 ms. En el registro basal en DI la derivada llegó a unos ±20 mV/s en el QRS y solo a 3 a 4 mV/s en las demás ondas, y al elevar al cuadrado los picos del QRS llegaron a 400 a 450 mientras el resto quedó casi en cero. Además, el pasa-banda de 5 a 15 Hz ya había atenuado buena parte de la onda T, de modo que una onda T grande pero lenta queda muy por debajo del umbral.
 
 ### P14. Comparando los latidos promedio, ¿cambia la altura del pico R?
 
-Sí. La amplitud media del pico R fue de 0.922 mV en aeróbica, 0.833 mV en basal, 0.756 mV en hiperventilación y 0.556 mV en hipoventilación, es decir, 33 % menor que la basal. En el registro de hipoventilación el pico R baja de unos 0.8 a 0.5 mV durante los primeros 4 s, justo cuando la FC sube por la inspiración profunda, y luego se mantiene bajo. Es coherente con retener la respiración con los pulmones llenos: el aire aumenta la impedancia entre el corazón y los electrodos y modifica la posición del corazón, lo que reduce la amplitud del QRS. Aeróbica tiene además la onda S más profunda, −0.359 mV frente a −0.264 mV en basal.
+Cambia poco. La amplitud media del pico R fue de 0.455 mV en basal, 0.439 mV en aeróbica, 0.410 mV en hiperventilación y 0.399 mV en hipoventilación, una diferencia de 12 % entre basal e hipoventilación. Como DI está invertida, ese pico corresponde a la onda S original; la deflexión medida como Q, que es el pico R original invertido, cambia más, de −0.482 mV en basal a −0.321 mV en aeróbica.
 
 ### P15. ¿La onda T está a la misma distancia del R y tiene la misma altura en todas las condiciones?
 
-No. En aeróbica la onda T llega antes, a 187 ms del pico R, frente a 238 ms en basal, 234 ms en hiperventilación y 242 ms en hipoventilación, porque la repolarización ventricular se acorta cuando la FC aumenta, igual que el intervalo QT. También es más alta, 0.186 mV frente a valores de 0.135 a 0.143 mV en las demás. Entre basal, hiperventilación e hipoventilación la onda T es casi igual en posición y en altura.
+No. En aeróbica la onda T llega antes, a 268.6 ms del pico R, frente a 310.5 a 317.2 ms en las demás condiciones, porque la repolarización ventricular se acorta cuando la FC aumenta, igual que el intervalo QT. También es mucho más baja, 0.059 mV frente a 0.154 a 0.180 mV. Entre basal, hiperventilación e hipoventilación la onda T es casi igual en posición y en altura.
 
 ### P16. Mirando los diagramas de caja, ¿qué dos características separan mejor las condiciones? ¿Tiene sentido fisiológico?
 
-La FC y la amplitud del pico R. La FC separa aeróbica, con valores altos, e hipoventilación, con valores bajos, del resto, y la amplitud del pico R separa hipoventilación, cuya caja queda por debajo de todas, y ubica aeróbica por encima de basal. Juntas distinguen tres grupos: aeróbica, hipoventilación y el par basal e hiperventilación. El tiempo de R a T también separa aeróbica, pero aporta casi la misma información que la FC, porque se acorta cuando la FC aumenta. Tiene sentido fisiológico: la FC refleja la respuesta autonómica al ejercicio y a la apnea, y la amplitud del pico R el efecto del volumen pulmonar durante la retención de la respiración.
+La FC y el tiempo de R a T, pero ambas solo separan aeróbica: con FC alta y repolarización más corta queda claramente aparte, mientras que las cajas de basal, hiperventilación e hipoventilación se superponen. Entre esas tres, la única característica que muestra algo de separación es la amplitud del pico R, algo mayor en basal. Tiene sentido fisiológico: el ejercicio eleva la FC y la repolarización se acorta con ella, mientras que en estos registros las maniobras respiratorias casi no cambiaron la FC ni la forma del latido.
 
 ### P17. ¿Qué dos condiciones se parecen más entre sí en casi todas las características?
 
-Basal e hiperventilación. Sus cajas se superponen en todas las características graficadas y sus promedios son muy cercanos: FC de 70.1 y 75.0 lpm, pico R de 0.833 y 0.756 mV, onda T de 0.143 y 0.140 mV, tiempo de R a T de 238 y 234 ms y duración de Q a S de 53.1 y 53.2 ms.
+Hiperventilación e hipoventilación. Sus promedios son casi iguales: FC de 55.9 y 56.2 lpm, pico R de 0.410 y 0.399 mV, tiempo de R a T de 313 y 317 ms, energía de cD6 de 0.391 en ambas y duración de Q a S de 95.1 y 91.3 ms. Basal también se parece mucho a ambas; se distingue solo por amplitudes de Q y R algo mayores.
 
 ### P18. ¿Qué clasificador obtuvo el mejor F1? ¿Coincide con el artículo base? ¿La diferencia con el segundo es mayor que la variación entre pliegues?
 
-El mejor F1 macro fue el de la SVM, con 0.873 ± 0.099, seguido del Random Forest, con 0.827 ± 0.123. En exactitud el orden se invierte y Random Forest queda primero con 0.910, lo que coincide con el artículo base, donde fue el mejor modelo con una exactitud cercana a 98 %; en F1 macro, en cambio, no coincide. La diferencia de F1 entre la SVM y el Random Forest, 0.046, es menor que la variación entre pliegues, de 0.10 a 0.12, así que no se puede afirmar que uno sea mejor que el otro; con solo tres pliegues y un participante, las diferencias pequeñas entre modelos no son confiables.
+El mejor fue la regresión logística, con un F1 macro de 0.596 ± 0.152 y una exactitud de 0.759, seguida del árbol de decisión, con 0.479 ± 0.075. No coincide con el artículo base, donde Random Forest fue el mejor con una exactitud cercana a 98 %; aquí Random Forest obtuvo solo 0.454 de F1. La diferencia con el segundo, 0.117, es menor que la desviación de la regresión logística, así que no se puede afirmar con seguridad que sea mejor. Todos los valores son bajos porque DI no es una buena derivación para estos datos: en DII y DIII el F1 subió a entre 0.65 y 0.81.
 
 ### P19. En la matriz de confusión, ¿qué condiciones se confunden más entre sí? Relaciónalo con P16 y P17.
 
-Hiperventilación es la condición más confundida: se reconocieron 27 de 36 latidos y 4 se asignaron a basal y 5 a hipoventilación. Le sigue hipoventilación, con 28 de 33, que perdió 2 latidos hacia basal y 3 hacia hiperventilación. Basal acertó 34 de 35 y aeróbica 55 de 59, y ningún latido de otra condición fue clasificado como aeróbica. Esto coincide con los diagramas de caja: basal e hiperventilación se superponen en casi todas las características, y la caja de hiperventilación, la más ancha en la FC y en la amplitud del pico R, se acerca por abajo a la de hipoventilación. Basal se reconoce bien porque sus latidos son muy uniformes, pero los de hiperventilación, más variables, caen a veces en su región. Aeróbica, que la FC separa con claridad, fue la mejor reconocida después de basal.
+Se confunden entre sí basal, hiperventilación e hipoventilación, y sobre todo estas dos últimas: 11 latidos de hiperventilación se clasificaron como hipoventilación y 11 de hipoventilación como hiperventilación. Hiperventilación fue la peor reconocida, con 18 de 36, y basal acertó 23 de 32. Aeróbica se reconoció sin errores, 60 de 60, y ningún latido de otra condición se asignó a ella. Coincide con P16 y P17: aeróbica es la única condición que separan la FC y el tiempo de R a T, mientras que las otras tres se superponen en casi todas las características.
 
 ### P20. Al quitar el ritmo, ¿cuánto cambió el F1? ¿Qué te dice eso sobre la forma del latido en tus condiciones?
 
-El F1 bajó entre 0.05 y 0.11: de 0.873 a 0.805 en la SVM, de 0.827 a 0.772 en Random Forest, de 0.770 a 0.723 en KNN, de 0.811 a 0.702 en regresión logística y de 0.673 a 0.564 en el árbol de decisión. Aun así, la forma sola quedó muy por encima del azar y en cuatro de los cinco modelos superó al ritmo solo, por lo que la forma del latido sí cambia con la condición: el pico R baja al retener la respiración y la onda T llega antes después del ejercicio. Hay que matizar que el tiempo de R a T depende de la FC, así que parte de la información del ritmo sigue presente de forma indirecta en el conjunto de forma.
+Casi no cambió: pasó de 0.596 a 0.540 en regresión logística, de 0.454 a 0.460 en Random Forest, de 0.442 a 0.414 en KNN, de 0.329 a 0.323 en SVM y de 0.479 a 0.382 en el árbol de decisión. Con solo el ritmo, en cambio, el F1 cayó a entre 0.22 y 0.30, cerca del azar. Esto indica que el ritmo solo sirve para separar aeróbica, porque las otras tres condiciones tienen la misma FC, y que la poca información que distingue basal, hiperventilación e hipoventilación está en la forma del latido, como la amplitud de Q y la asimetría.
 
 ### P21. ¿Hubo diferencia entre mezclar al azar y validar por bloques? ¿Por qué el valor al azar no es confiable?
 
-Sí. El Random Forest con solo características de forma obtuvo un F1 de 0.951 al mezclar los latidos al azar y de 0.772 al validar por bloques, 0.18 menos. El valor al azar no es confiable porque los latidos consecutivos de un mismo archivo son casi copias: comparten el contacto de los electrodos, el patrón respiratorio y el mismo momento del registro. Al mezclarlos, el modelo se evalúa con latidos casi idénticos a los que usó para entrenar y mide cuánto memorizó el registro, no cuánto generaliza. Con los bloques de 10 s los latidos de prueba provienen de tramos de tiempo que el modelo no vio. Aun así, todos los bloques de una condición vienen del mismo archivo, de modo que el modelo podría estar aprendiendo rasgos del registro además de la fisiología.
+Sí, y muy grande. El Random Forest con solo características de forma obtuvo un F1 de 0.857 al mezclar los latidos al azar y de 0.460 al validar por bloques, 0.40 menos. El valor al azar no es confiable porque los latidos consecutivos de un mismo archivo son casi copias: comparten el contacto de los electrodos, el patrón respiratorio y el mismo momento del registro. Al mezclarlos, el modelo se evalúa con latidos casi idénticos a los que usó para entrenar y mide cuánto memorizó cada registro, no cuánto generaliza. Con los bloques de 10 s los latidos de prueba provienen de tramos de tiempo que el modelo no vio.
 
 ## CONCLUSIONES
 
-Un latido de 600 muestras puede resumirse en 24 características con significado fisiológico. Con ellas, los cinco clasificadores reconocieron la condición en que se registró cada latido muy por encima del azar: el mejor F1 macro fue de 0.873 con la SVM, frente a 0.25 al azar, y la mayor exactitud, de 0.910, la obtuvo Random Forest, aunque las diferencias entre modelos fueron menores que la variación entre pliegues.
+Un latido de 600 muestras puede resumirse en 24 características con significado fisiológico, pero su utilidad depende de la derivación y de las condiciones registradas. En los registros del grupo la FC solo distinguió el ejercicio: aeróbica tuvo de 92.7 a 105.4 lpm, mientras que basal, hiperventilación e hipoventilación quedaron entre 51.6 y 60.3 lpm, con diferencias menores que la variación entre derivaciones.
 
-La revisión previa de los datos condicionó todo el análisis. El control automático encontró artefactos de movimiento con saturación en hipoventilación DI, dos latidos no detectados en hiperventilación DIII y un QRS bifásico o negativo en DII y DIII que obligó a invertirlas. También mostró que las diferencias de FC entre derivaciones de una misma condición, de 103.0 a 90.4 lpm en aeróbica, se deben al momento en que se grabó cada derivación y no a la derivación, porque BITalino no registra las tres a la vez. Por eso se trabajó con una sola derivación, DI, la única con el QRS positivo en las cuatro condiciones.
+La revisión previa de los datos mostró registros de buena calidad, sin paquetes perdidos ni saturación y con un solo falso latido al inicio de basal DIII. También mostró que el QRS de DI es bifásico y que la regla de polaridad la invierte en las cuatro condiciones, de modo que sus medidas morfológicas no conservan el nombre de las ondas. Además, las diferencias de FC entre derivaciones de aeróbica, de 105.4 a 92.7 lpm, se deben a que BITalino graba una derivación a la vez durante la recuperación.
 
-El filtrado de 0.5 a 40 Hz con notch de 60 Hz eliminó la interferencia de la red sin desplazar las ondas, a costa de reducir el pico R en unos 0.07 mV. El algoritmo de Pan y Tompkins detectó todos los latidos de los registros limpios, porque tras la derivada y el cuadrado el QRS queda unas 37 veces por encima de la onda T, pero contó como latidos los artefactos de hipoventilación. El control de los intervalos RR permitió excluir esos latidos antes de extraer las características.
+El filtrado de 0.5 a 40 Hz con notch de 60 Hz limpió la señal sin desplazar las ondas, y el algoritmo de Pan y Tompkins detectó todos los latidos de DI gracias a que la derivada y el cuadrado resaltan las pendientes del QRS. Con DI, la regresión logística fue el mejor clasificador, con un F1 de 0.596; aeróbica se reconoció sin errores y las otras tres condiciones se confundieron entre sí. La forma del latido aportó casi toda la información, porque el ritmo solo separa el ejercicio.
 
-Las características de ritmo fueron las más importantes para Random Forest, pero la forma del latido también distingue las condiciones: sin ellas, la SVM mantuvo un F1 de 0.805. Los cambios de forma son coherentes con la fisiología, con un pico R más bajo al retener la respiración y una onda T más temprana después del ejercicio. La forma de validar resultó tan importante como el modelo, porque mezclar los latidos al azar infló el F1 de 0.772 a 0.951. Finalmente, los resultados describen a un solo participante en una sola sesión, con unos 30 s por condición, y no pueden generalizarse a otras personas; en el artículo base las clases eran tipos de latido de muchos pacientes, mientras que aquí fueron condiciones fisiológicas de un mismo sujeto.
+Las otras derivaciones clasificaron mejor, con un F1 de 0.778 en DII y 0.813 en DIII, lo que confirma la importancia de elegir una derivación con QRS positivo. La validación por bloques resultó indispensable, porque mezclar los latidos al azar infló el F1 de 0.460 a 0.857. Finalmente, los resultados describen a un solo participante en una sola sesión y no pueden generalizarse; en el artículo base las clases eran tipos de latido de muchos pacientes, mientras que aquí fueron condiciones fisiológicas de un mismo sujeto.
 
 ## REFERENCIAS
 
